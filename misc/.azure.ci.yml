@@ -17,3 +17,8 @@ steps:
       configuration: 'Release'
       includesymbols: true
       versioningScheme: 'off'
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: drop"
+    condition: succeeded()
