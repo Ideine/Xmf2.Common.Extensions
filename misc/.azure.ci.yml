@@ -10,3 +10,10 @@ steps:
   - checkout: self
     clean: true
   
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: 'Xmf2.Common.Extensions.csproj'
+      configuration: 'Release'
+      includesymbols: true
+      versioningScheme: 'off'
