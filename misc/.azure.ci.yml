@@ -1,0 +1,12 @@
+trigger: 
+  - master
+
+name: Xmf2.Common.Extensions-CI-$(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: windows-latest
+
+steps:
+  - checkout: self
+    clean: true
+  

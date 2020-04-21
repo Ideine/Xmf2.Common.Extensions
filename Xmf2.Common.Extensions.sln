@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmf2.Common.Extensions", "Xmf2.Common.Extensions.csproj", "{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{FE8B7094-D688-4390-9257-6857A4B546D6}"
+ProjectSection(SolutionItems) = preProject
+	misc\.azure.ci.yml = misc\.azure.ci.yml
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
