@@ -17,6 +17,10 @@
 		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
 	</PropertyGroup>
 	
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	
 	<ItemGroup>
 	  <None Remove=".editorconfig" />
 	  <None Remove=".gitignore" />
