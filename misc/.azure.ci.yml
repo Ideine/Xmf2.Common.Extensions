@@ -10,3 +10,14 @@ steps:
   - checkout: self
     clean: true
   
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: 'Xmf2.Common.Extensions.csproj'
+      configuration: 'Release'
+      versioningScheme: 'off'
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: drop"
+    condition: succeeded()
