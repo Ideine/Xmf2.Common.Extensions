@@ -13,5 +13,18 @@ namespace Xmf2.Common.Collections
 
 			d[key2] = value;
 		}
+
+		public static bool TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
+		{
+			if (dictionary.ContainsKey(key))
+			{
+				return false;
+			}
+			else
+			{
+				dictionary.Add(key, value);
+				return true;
+			}
+		}
 	}
 }
