@@ -7,13 +7,8 @@ namespace Xmf2.Common.Collections
 {
 	public static class ConvertAllExtensions
 	{
-		public static List<TDest> ConvertAll<TSource, TDest>(this IReadOnlyList<TSource> source, Func<TSource, TDest> converter)
-		{
-			var result = new List<TDest>(source.Count);
-			result.AddRange(source.Select(converter));
-
-			return result;
-		}
+		public static List<TDest> ConvertAll<TSource, TDest>(this IEnumerable<TSource> source, Func<TSource, TDest> converter)
+			=> source.Select(converter).ToList();
 
 		public static List<TOut> ConvertAll<TIn1, TIn2, TOut>(this List<Tuple<TIn1, TIn2>> list, Func<TIn1, TIn2, TOut> func)
 			=> list.ConvertAll(x => func(x.Item1, x.Item2));
