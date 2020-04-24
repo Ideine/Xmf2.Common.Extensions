@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageVersion>1.0.0-pre3</PackageVersion>
+		<PackageVersion>1.0.0-pre4</PackageVersion>
 		<Title>Xmf2.Common.Extensions</Title>
 		<PackageId>Xmf2.Common.Extensions</PackageId>
 		<Authors>Ideine, VJubert</Authors>
@@ -24,6 +24,7 @@
 	<ItemGroup>
 	  <None Remove=".editorconfig" />
 	  <None Remove=".gitignore" />
+	  <None Remove="misc/.azure.ci.yml" />
 	</ItemGroup>
 
 </Project>
