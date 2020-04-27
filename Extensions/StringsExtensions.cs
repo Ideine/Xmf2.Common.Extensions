@@ -6,17 +6,7 @@ namespace Xmf2.Common.Extensions
 {
 	public static class StringsExtensions
 	{
-		//TODO: voir en PR. Confusion possible entre Xmf2.Common.Collections.NullOrEmptyExtensions et cette méthode...
-		//... d'autant plus que ces méthodes sont désormais dans des espaces de nom différents. Auparavant le compilateur...
-		//... choisissait la méthode avec le type le plus spécifique (donc celle ci s'il s'agissait d'une string).
-		//2 propositions de résolutions : 
-		//	1) Ne conserver que la méthode de l'espace de nom Xmf2.Common.Collections qui au final fait la même chose.
-		//	2) Passer cette méthode obsolète et créer une autre méthode StringIsNullOrEmpty(this string s) => ...
-		public static bool IsNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
-
 		public static string NormalizeEmail(this string email) => string.IsNullOrEmpty(email) ? email : email.Trim().ToLowerInvariant();
-
-		public static bool NotNullOrEmpty(this string s) => !string.IsNullOrEmpty(s);
 
 		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
 
