@@ -6,19 +6,19 @@ namespace Xmf2.Common.Collections
 {
 	public static class DiffExtensions
 	{
-		public static DiffResult<T> Diff<T>(this IEnumerable<T> firstSet, IEnumerable<T> secondSet)
+		public static DiffResult<T> Diff<T>(this IEnumerable<T> firstSet, IEnumerable<T> secondSet, IEqualityComparer<T> equalityComparer = null)
 		{
-			return new DiffResult<T>(firstSet, secondSet);
+			return new DiffResult<T>(firstSet, secondSet, equalityComparer);
 		}
 
-		public static DiffResult<T, T, TKey> Diff<T, TKey>(this IEnumerable<T> firstSet, IEnumerable<T> secondSet, Func<T, TKey> keySelector)
+		public static DiffResult<T, T, TKey> Diff<T, TKey>(this IEnumerable<T> firstSet, IEnumerable<T> secondSet, Func<T, TKey> keySelector, IEqualityComparer<TKey> keyComparer = null)
 		{
-			return new DiffResult<T, T, TKey>(firstSet, secondSet, keySelector, keySelector);
+			return new DiffResult<T, T, TKey>(firstSet, secondSet, keySelector, keySelector, keyComparer);
 		}
 
-		public static DiffResult<TFirst, TSecond, TKey> Diff<TFirst, TSecond, TKey>(this IEnumerable<TFirst> firstSet, IEnumerable<TSecond> secondSet, Func<TFirst, TKey> firstKeySelector, Func<TSecond, TKey> secondKeySelector)
+		public static DiffResult<TFirst, TSecond, TKey> Diff<TFirst, TSecond, TKey>(this IEnumerable<TFirst> firstSet, IEnumerable<TSecond> secondSet, Func<TFirst, TKey> firstKeySelector, Func<TSecond, TKey> secondKeySelector, IEqualityComparer<TKey> keyComparer = null)
 		{
-			return new DiffResult<TFirst, TSecond, TKey>(firstSet, secondSet, firstKeySelector, secondKeySelector);
+			return new DiffResult<TFirst, TSecond, TKey>(firstSet, secondSet, firstKeySelector, secondKeySelector, keyComparer);
 		}
 	}
 
@@ -36,19 +36,21 @@ namespace Xmf2.Common.Collections
 	{
 		private HashSet<T> _firstSet;
 		private HashSet<T> _secondSet;
+		private readonly IEqualityComparer<T> _equalityComparer;
 
-		public DiffResult(IEnumerable<T> firstSet, IEnumerable<T> secondSet)
+		public DiffResult(IEnumerable<T> firstSet, IEnumerable<T> secondSet, IEqualityComparer<T> equalityComparer = null)
 		{
-			_firstSet = new HashSet<T>(firstSet);
-			_secondSet = new HashSet<T>(secondSet);
+			_equalityComparer = equalityComparer ?? EqualityComparer<T>.Default;
+			_firstSet = new HashSet<T>(firstSet, _equalityComparer);
+			_secondSet = new HashSet<T>(secondSet, _equalityComparer);
 		}
 
 		public IEnumerable<T> FirstSet => _firstSet;
 		public IEnumerable<T> SecondSet => _secondSet;
-		public IEnumerable<T> OnlyInFirstSet => _firstSet.Where(x => !_secondSet.Contains(x));
-		public IEnumerable<T> OnlyInSecondSet => _secondSet.Where(x => !_firstSet.Contains(x));
-		public IEnumerable<T> InBothFromFirst => _firstSet.Where(_secondSet.Contains);
-		public IEnumerable<T> InBothFromSecond => _secondSet.Where(_firstSet.Contains);
+		public IEnumerable<T> OnlyInFirstSet => _firstSet.Where(x => !_secondSet.Contains(x, _equalityComparer));
+		public IEnumerable<T> OnlyInSecondSet => _secondSet.Where(x => !_firstSet.Contains(x, _equalityComparer));
+		public IEnumerable<T> InBothFromFirst => _firstSet.Where(x => _secondSet.Contains(x, _equalityComparer));
+		public IEnumerable<T> InBothFromSecond => _secondSet.Where(x => _firstSet.Contains(x, _equalityComparer));
 
 		#region IDisposable Support
 
@@ -73,11 +75,13 @@ namespace Xmf2.Common.Collections
 	{
 		private Dictionary<TKey, TFirst> _firstDictionary;
 		private Dictionary<TKey, TSecond> _secondDictionary;
+		private readonly IEqualityComparer<TKey> _keyComparer;
 
-		public DiffResult(IEnumerable<TFirst> firstSet, IEnumerable<TSecond> secondSet, Func<TFirst, TKey> firstKeySelector, Func<TSecond, TKey> secondKeySelector)
+		public DiffResult(IEnumerable<TFirst> firstSet, IEnumerable<TSecond> secondSet, Func<TFirst, TKey> firstKeySelector, Func<TSecond, TKey> secondKeySelector, IEqualityComparer<TKey> keyComparer = null)
 		{
-			_firstDictionary = firstSet.ToDictionary(firstKeySelector);
-			_secondDictionary = secondSet.ToDictionary(secondKeySelector);
+			_keyComparer = keyComparer ?? EqualityComparer<TKey>.Default;
+			_firstDictionary = firstSet.ToDictionary(firstKeySelector, _keyComparer);
+			_secondDictionary = secondSet.ToDictionary(secondKeySelector, _keyComparer);
 		}
 
 		public IEnumerable<TFirst> OnlyInFirstSet => _firstDictionary.Where(kvp => !_secondDictionary.ContainsKey(kvp.Key)).Select(kvp => kvp.Value);

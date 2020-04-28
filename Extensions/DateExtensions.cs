@@ -6,6 +6,8 @@ namespace Xmf2.Common.Extensions
 {
 	public static class DateExtensions
 	{
+		public static DateTime BeginningOfDay(this DateTime date) => date.Date;
+
 		public static DateTime EndOfDay(this DateTime date)
 		{
 			var endOfDay = new DateTime(date.Year, date.Month, date.Day);

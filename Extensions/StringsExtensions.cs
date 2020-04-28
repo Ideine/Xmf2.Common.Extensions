@@ -6,11 +6,7 @@ namespace Xmf2.Common.Extensions
 {
 	public static class StringsExtensions
 	{
-		public static bool IsNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
-
 		public static string NormalizeEmail(this string email) => string.IsNullOrEmpty(email) ? email : email.Trim().ToLowerInvariant();
-
-		public static bool NotNullOrEmpty(this string s) => !string.IsNullOrEmpty(s);
 
 		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
 
