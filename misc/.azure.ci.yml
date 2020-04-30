@@ -9,11 +9,16 @@ pool:
 steps:
   - checkout: self
     clean: true
-  
+
+  - task: DotNetCoreCLI@2
+      inputs:
+      command: 'test'
+      projects: 'Xmf2.Common.Extensions.Tests/Xmf2.Common.Extensions.Tests.csproj'
+
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
-      packagesToPack: 'Xmf2.Common.Extensions.csproj'
+      packagesToPack: 'Xmf2.Common.Extensions/Xmf2.Common.Extensions.csproj'
       configuration: 'Release'
       versioningScheme: 'off'
     condition: succeeded()
