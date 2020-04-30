@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmf2.Common.Extensions", "Xmf2.Common.Extensions.csproj", "{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}"
-EndProject
+# Visual Studio 15
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{FE8B7094-D688-4390-9257-6857A4B546D6}"
-ProjectSection(SolutionItems) = preProject
-	misc\.azure.ci.yml = misc\.azure.ci.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		misc\.azure.ci.yml = misc\.azure.ci.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmf2.Common.Extensions.Tests", "Xmf2.Common.Extensions.Tests\Xmf2.Common.Extensions.Tests.csproj", "{D5081150-7A75-43A6-889E-F0F4EE4B158B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmf2.Common.Extensions", "Xmf2.Common.Extensions\Xmf2.Common.Extensions.csproj", "{242F4AFB-5181-4D2E-87E9-DE1E229F6E3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,5 +20,13 @@ Global
 		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAB02CB6-7427-4CB0-9C5B-60277AA29CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5081150-7A75-43A6-889E-F0F4EE4B158B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5081150-7A75-43A6-889E-F0F4EE4B158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5081150-7A75-43A6-889E-F0F4EE4B158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5081150-7A75-43A6-889E-F0F4EE4B158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{242F4AFB-5181-4D2E-87E9-DE1E229F6E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{242F4AFB-5181-4D2E-87E9-DE1E229F6E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{242F4AFB-5181-4D2E-87E9-DE1E229F6E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{242F4AFB-5181-4D2E-87E9-DE1E229F6E3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

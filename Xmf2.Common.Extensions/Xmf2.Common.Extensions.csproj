@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<Title>Xmf2.Common.Extensions</Title>
 		<PackageId>Xmf2.Common.Extensions</PackageId>
 		<Authors>Ideine, VJubert</Authors>
