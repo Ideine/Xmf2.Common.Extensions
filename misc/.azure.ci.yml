@@ -11,7 +11,7 @@ steps:
     clean: true
 
   - task: DotNetCoreCLI@2
-      inputs:
+    inputs:
       command: 'test'
       projects: 'Xmf2.Common.Extensions.Tests/Xmf2.Common.Extensions.Tests.csproj'
 
