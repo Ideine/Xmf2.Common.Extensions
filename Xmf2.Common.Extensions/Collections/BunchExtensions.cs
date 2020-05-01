@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace Xmf2.Common.Collections
 {
 	public static class BunchExtensions
 	{
+
 		/// <summary>
 		/// Découpe un IEnumerable en sous listes.
 		/// </summary>
@@ -15,25 +17,37 @@ namespace Xmf2.Common.Collections
 		///			DontCallThisMethodWithTooMuchElements(littleList);//with 100 elements it's ok.
 		///		}
 		/// </example>
-		public static IEnumerable<List<T>> ByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
+		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
 		{
+			if (bunchMaxSize < 1)
+			{
+				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
+			}
+
 			using IEnumerator<T> enumerator = source.GetEnumerator();
-			bool moveNext = true;
-			while (moveNext)
+			bool moveNext, didMove;
+			IReadOnlyList<T> bunch;
+			do
 			{
-				yield return GetABunch();
-			}
-
-			List<T> GetABunch()
-			{
-				var bunch = new List<T>(bunchMaxSize);
-				for (int i = 0 ; i < bunchMaxSize && (moveNext = enumerator.MoveNext()) ; i++)
+				(moveNext, didMove, bunch) = TryGetABunch(enumerator, bunchMaxSize);
+				if (didMove)
 				{
-					bunch.Add(enumerator.Current);
+					yield return bunch;
 				}
+			} while (moveNext);
+		}
 
-				return bunch;
+		private static (bool moveNext, bool didMove, IReadOnlyList<T> bunch) TryGetABunch<T>(IEnumerator<T> enumerator, int bunchMaxSize)
+		{
+			var bunch = new List<T>(bunchMaxSize);
+			bool didMove = false;
+			bool moveNext = true;
+			for (int i = 0 ; i < bunchMaxSize && (moveNext = enumerator.MoveNext()) ; i++)
+			{
+				bunch.Add(enumerator.Current);
+				didMove = true;
 			}
+			return (moveNext, didMove, bunch);
 		}
 	}
 }
