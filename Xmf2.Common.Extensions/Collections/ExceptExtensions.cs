@@ -26,12 +26,12 @@ namespace Xmf2.Common.Collections
 		{
 			if (first == null)
 			{
-				throw new ArgumentNullException("First collection is null");
+				throw new ArgumentNullException(nameof(first));
 			}
 
 			if (second == null)
 			{
-				throw new ArgumentNullException("Second collection is null");
+				throw new ArgumentNullException(nameof(second));
 			}
 
 			return ExceptIterator(first, second, firstSelect, secondSelect, comparer);
