@@ -1,6 +1,7 @@
 using Xunit;
+using Xmf2.Common.Extensions;
 
-namespace Xmf2.Common.Extensions.Tests
+namespace Xmf2.Common.Tests.Extensions
 {
 	public static class NumberExtensionsUnitTest
 	{

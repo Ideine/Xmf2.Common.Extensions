@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Xmf2.Common.Collections;
 using Xunit;
 
-namespace Xmf2.Common.Tests.Extensions
+namespace Xmf2.Common.Tests.Collections
 {
 	public static class CheckReadOnlyCollectionConcatExtensions
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using Xmf2.Common.Collections;
 using Xunit;
 
-namespace Xmf2.Common.Tests
+namespace Xmf2.Common.Tests.Collections
 {
 	public static class CheckSliceExtensions
 	{
