@@ -5,6 +5,41 @@ namespace Xmf2.Common.Collections
 {
 	public static class BunchExtensions
 	{
+		/// <summary>
+		/// Découpe un Array en sous listes.
+		/// </summary>
+		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this T[] source, int bunchMaxSize)
+		{
+			if (bunchMaxSize < 1)
+			{
+				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
+			}
+
+			for (int offset = 0 ; offset < source.Length ; offset += bunchMaxSize)
+			{
+				yield return offset + bunchMaxSize > source.Length
+					? source.Slice(offset)
+					: source.Slice(offset, bunchMaxSize);
+			}
+		}
+
+		/// <summary>
+		/// Découpe un IReadOnlyList en sous listes.
+		/// </summary>
+		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IReadOnlyList<T> source, int bunchMaxSize)
+		{
+			if (bunchMaxSize < 1)
+			{
+				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
+			}
+
+			for (int offset = 0 ; offset < source.Count; offset += bunchMaxSize)
+			{
+				yield return offset + bunchMaxSize > source.Count
+					? source.Slice(offset)
+					: source.Slice(offset, bunchMaxSize);
+			}
+		}
 
 		/// <summary>
 		/// Découpe un IEnumerable en sous listes.
