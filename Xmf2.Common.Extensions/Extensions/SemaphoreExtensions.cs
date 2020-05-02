@@ -12,6 +12,12 @@ namespace Xmf2.Common.Extensions
 			return new LockDisposable(semaphore);
 		}
 
+		public static IDisposable Lock(this SemaphoreSlim mutex)
+		{
+			mutex.Wait();
+			return new LockDisposable(mutex);
+		}
+
 		private class LockDisposable : IDisposable
 		{
 			private SemaphoreSlim _semaphore;
