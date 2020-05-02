@@ -162,13 +162,5 @@ namespace Xmf2.Common.Tests
 		{
 			return sliceDelegate(source, offset, count);
 		}
-
-		private static void ShoudThrow<TEx>(this Action action)
-			where TEx : Exception
-		{
-			try { action(); }
-			catch (TEx) { return; }
-			throw new Exception($"{typeof(TEx).Name} expected.");
-		}
 	}
 }

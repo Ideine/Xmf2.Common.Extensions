@@ -22,6 +22,21 @@ namespace Xmf2.Common.Extensions
 			return new DateTime(date.Year, date.Month, 1);
 		}
 
+		public static bool IsSameDay(this DateTime firstDate, DateTime secondDate)
+		{
+			return firstDate.IsSameMonth(secondDate) && firstDate.Day == secondDate.Day;
+		}
+
+		public static bool IsSameMonth(this DateTime firstDate, DateTime secondDate)
+		{
+			return firstDate.IsSameYear(secondDate) && firstDate.Month == secondDate.Month;
+		}
+
+		public static bool IsSameYear(this DateTime firstDate, DateTime secondDate)
+		{
+			return firstDate.Year == secondDate.Year;
+		}
+
 		public static IEnumerable<DateTimeOffset> Range(DateTimeOffset from, DateTimeOffset to, TimeSpan timeSpan)
 		{
 			for (DateTimeOffset dayIndex = from ; dayIndex <= to ; dayIndex = dayIndex.Add(timeSpan))

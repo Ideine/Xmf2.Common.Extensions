@@ -19,6 +19,11 @@ namespace Xmf2.Common.Extensions
 			separator
 		}, options);
 
+		public static string[] Split(this string input, string separator, StringSplitOptions options) => input.Split(new[]
+		{
+			separator
+		}, options);
+
 		public static string AsSha256(this string input)
 		{
 			using var algorithm = SHA256.Create();
