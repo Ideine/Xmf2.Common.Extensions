@@ -14,13 +14,7 @@ namespace Xmf2.Common.Collections
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
-
-			for (int offset = 0 ; offset < source.Length ; offset += bunchMaxSize)
-			{
-				yield return offset + bunchMaxSize > source.Length
-					? source.Slice(offset)
-					: source.Slice(offset, bunchMaxSize);
-			}
+			return source.InternalByBunchOf(bunchMaxSize);
 		}
 
 		/// <summary>
@@ -28,17 +22,15 @@ namespace Xmf2.Common.Collections
 		/// </summary>
 		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IReadOnlyList<T> source, int bunchMaxSize)
 		{
+			if (source is T[] arrayOfT)
+			{
+				return arrayOfT.ByBunchOf(bunchMaxSize);
+			}
 			if (bunchMaxSize < 1)
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
-
-			for (int offset = 0 ; offset < source.Count; offset += bunchMaxSize)
-			{
-				yield return offset + bunchMaxSize > source.Count
-					? source.Slice(offset)
-					: source.Slice(offset, bunchMaxSize);
-			}
+			return source.InternalByBunchOf(bunchMaxSize);
 		}
 
 		/// <summary>
@@ -54,11 +46,39 @@ namespace Xmf2.Common.Collections
 		/// </example>
 		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
 		{
+			if (source is IReadOnlyList<T> readonlyList)
+			{
+				return readonlyList.ByBunchOf(bunchMaxSize);
+			}
 			if (bunchMaxSize < 1)
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
+			return source.InternalByBunchOf(bunchMaxSize);
+		}
 
+		private static IEnumerable<IReadOnlyList<T>> InternalByBunchOf<T>(this T[] source, int bunchMaxSize)
+		{
+			for (int offset = 0 ; offset < source.Length ; offset += bunchMaxSize)
+			{
+				yield return offset + bunchMaxSize > source.Length
+					? source.Slice(offset)
+					: source.Slice(offset, bunchMaxSize);
+			}
+		}
+
+		private static IEnumerable<IReadOnlyList<T>> InternalByBunchOf<T>(this IReadOnlyList<T> source, int bunchMaxSize)
+		{
+			for (int offset = 0 ; offset < source.Count ; offset += bunchMaxSize)
+			{
+				yield return offset + bunchMaxSize > source.Count
+					? source.Slice(offset)
+					: source.Slice(offset, bunchMaxSize);
+			}
+		}
+
+		private static IEnumerable<IReadOnlyList<T>> InternalByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
+		{
 			using IEnumerator<T> enumerator = source.GetEnumerator();
 			bool moveNext, didMove;
 			IReadOnlyList<T> bunch;
