@@ -32,7 +32,7 @@ namespace Xmf2.Common.Tests.Collections
 		private static void RefuseInvalidArguments<TSource, T>(TSource source, ByBunchDelegate<TSource, T> byBunchDelegate)
 		{
 			Action action = () => source.ByBunchWith(0, byBunchDelegate);
-			action.ShoudThrow<ArgumentOutOfRangeException>();
+			Assert.Throws<ArgumentOutOfRangeException>(action);
 		}
 
 		[Fact]

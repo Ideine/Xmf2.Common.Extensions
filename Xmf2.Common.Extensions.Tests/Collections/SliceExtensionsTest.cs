@@ -30,21 +30,21 @@ namespace Xmf2.Common.Tests.Collections
 
 			//Test argument: source
 			action = () => nullSource.SliceWith(0, 0, sliceDelegate);
-			action.ShoudThrow<ArgumentNullException>();
+			Assert.Throws<ArgumentNullException>(action);
 
 			//Test argument: startOffset
 			action = () => validSource.SliceWith(offset: -1, count: 0, sliceDelegate);
-			action.ShoudThrow<ArgumentOutOfRangeException>();
+			Assert.Throws<ArgumentOutOfRangeException>(action);
 
 			action = () => validSource.SliceWith(offset: 2, count: 0, sliceDelegate);
-			action.ShoudThrow<ArgumentException>();
+			Assert.Throws<ArgumentException>(action);
 
 			//Test argument: count
 			action = () => validSource.SliceWith(offset: 0, count: -1, sliceDelegate);
-			action.ShoudThrow<ArgumentOutOfRangeException>();
+			Assert.Throws<ArgumentOutOfRangeException>(action);
 
 			action = () => validSource.SliceWith(offset: 0, count: 2, sliceDelegate);
-			action.ShoudThrow<ArgumentException>();
+			Assert.Throws<ArgumentException>(action);
 		}
 
 		[Fact]
@@ -68,10 +68,10 @@ namespace Xmf2.Common.Tests.Collections
 
 			//Test indexor
 			action = () => _ = slice[-1];
-			action.ShoudThrow<ArgumentOutOfRangeException>();
+			Assert.Throws<ArgumentOutOfRangeException>(action);
 
 			action = () => _ = slice[1];
-			action.ShoudThrow<ArgumentOutOfRangeException>();
+			Assert.Throws<ArgumentOutOfRangeException>(action);
 		}
 
 		[Fact]
