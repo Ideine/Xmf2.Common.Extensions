@@ -7,14 +7,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageVersion>1.1.3</PackageVersion>
+		<PackageVersion>1.1.4</PackageVersion>
 		<Title>Xmf2.Common.Extensions</Title>
 		<PackageId>Xmf2.Common.Extensions</PackageId>
 		<Authors>Ideine, VJubert</Authors>
 		<Description>Ideine extensions for netstandard class</Description>
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
-		<PackageReleaseNotes>Added stream extensions</PackageReleaseNotes>
+		<PackageReleaseNotes>Added exception extensions</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
