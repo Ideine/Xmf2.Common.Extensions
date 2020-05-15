@@ -11,13 +11,16 @@ namespace Xmf2.Common.Collections
 			=> source.Select(converter).ToList();
 
 		public static List<TOut> ConvertAll<TIn1, TIn2, TOut>(this List<Tuple<TIn1, TIn2>> list, Func<TIn1, TIn2, TOut> func)
-			=> list.ConvertAll(x => func(x.Item1, x.Item2));
+			=> list.ConvertAll(x => x.ToArguments(func));
 
 		public static List<TOut> ConvertAll<TIn1, TIn2, TIn3, TOut>(this List<Tuple<TIn1, TIn2, TIn3>> list, Func<TIn1, TIn2, TIn3, TOut> func)
-			=> list.ConvertAll(x => func(x.Item1, x.Item2, x.Item3));
+			=> list.ConvertAll(x => x.ToArguments(func));
 
 		public static List<TOut> ConvertAll<TIn1, TIn2, TIn3, TIn4, TOut>(this List<Tuple<TIn1, TIn2, TIn3, TIn4>> list, Func<TIn1, TIn2, TIn3, TIn4, TOut> func)
-			=> list.ConvertAll(x => func(x.Item1, x.Item2, x.Item3, x.Item4));
+			=> list.ConvertAll(x => x.ToArguments(func));
+
+		public static List<TOut> ConvertAll<TIn1, TIn2, TIn3, TIn4, TIn5, TOut>(this List<Tuple<TIn1, TIn2, TIn3, TIn4, TIn5>> list, Func<TIn1, TIn2, TIn3, TIn4, TIn5, TOut> func)
+			=> list.ConvertAll(x => x.ToArguments(func));
 
 		public static List<TOut> ConvertAll<TSource, TOut>(this IReadOnlyCollection<TSource> source, Func<TSource, int, TOut> converter)
 		{
