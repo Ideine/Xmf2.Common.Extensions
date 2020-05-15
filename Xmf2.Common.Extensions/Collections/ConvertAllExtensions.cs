@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xmf2.Common.Extensions;
 
 namespace Xmf2.Common.Collections
 {
