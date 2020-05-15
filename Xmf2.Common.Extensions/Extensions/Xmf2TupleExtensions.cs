@@ -2,9 +2,9 @@
 namespace Xmf2.Common.Extensions
 {
 	/// <remarks>
-	/// Prefixed 'Xmf' to avoid any naming conflicts with <see cref="System.TupleExtensions"/>
+	/// Prefixed 'Xmf2' to avoid any naming conflicts with <see cref="System.TupleExtensions"/>
 	/// </remarks>
-	public static class XmfTupleExtensions
+	public static class Xmf2TupleExtensions
 	{
 		public static TOut ToArguments<TIn1, TIn2, TOut>(this Tuple<TIn1, TIn2> tuple, Func<TIn1, TIn2, TOut> func)
 			=> func(tuple.Item1, tuple.Item2);
