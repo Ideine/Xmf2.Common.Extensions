@@ -19,7 +19,12 @@ namespace Xmf2.Common.Collections
 		public static List<TOut> ConvertAll<TIn1, TIn2, TIn3, TIn4, TOut>(this List<Tuple<TIn1, TIn2, TIn3, TIn4>> list, Func<TIn1, TIn2, TIn3, TIn4, TOut> func)
 			=> list.ConvertAll(x => func(x.Item1, x.Item2, x.Item3, x.Item4));
 
-		public static List<TOut> ConvertAll<TIn1, TIn2, TIn3, TIn4, TIn5, TOut>(this List<Tuple<TIn1, TIn2, TIn3, TIn4, TIn5>> list, Func<TIn1, TIn2, TIn3, TIn4, TIn5, TOut> func) => list.ConvertAll(x => func(x.Item1, x.Item2, x.Item3, x.Item4, x.Item5));
+		public static List<TOut> ConvertAll<TSource, TOut>(this IReadOnlyCollection<TSource> source, Func<TSource, int, TOut> converter)
+		{
+			var result = new List<TOut>(capacity: source.Count);
+			result.AddRange(source.Select(converter));
+			return result;
+		}
 
 		public static async Task<List<TDest>> ConvertAllAsync<TSource, TDest>(this IReadOnlyList<TSource> source, Func<TSource, Task<TDest>> map)
 		{
