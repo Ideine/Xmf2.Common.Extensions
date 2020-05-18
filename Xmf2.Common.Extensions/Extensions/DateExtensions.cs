@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Xmf2.Common.Extensions
@@ -22,9 +23,25 @@ namespace Xmf2.Common.Extensions
 			return new DateTime(date.Year, date.Month, 1);
 		}
 
+		public static DateTime BeginningOfWeek(this DateTime date, DayOfWeek starDayOfWeek = DayOfWeek.Monday)
+		{
+			int diff = (7 + (date.DayOfWeek - starDayOfWeek)) % 7;
+			return date.AddDays(-1 * diff).Date;
+		}
+
 		public static bool IsSameDay(this DateTime firstDate, DateTime secondDate)
 		{
 			return firstDate.IsSameMonth(secondDate) && firstDate.Day == secondDate.Day;
+		}
+
+		public static bool IsSameWeek(this DateTime firstDate, DateTime secondDate, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
+		{
+			DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+
+			int firstDateWeek = dfi.Calendar.GetWeekOfYear(firstDate, dfi.CalendarWeekRule, startDayOfWeek);
+			int secondDateWeek = dfi.Calendar.GetWeekOfYear(secondDate, dfi.CalendarWeekRule, startDayOfWeek);
+
+			return firstDateWeek == secondDateWeek;
 		}
 
 		public static bool IsSameMonth(this DateTime firstDate, DateTime secondDate)
