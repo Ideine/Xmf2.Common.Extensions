@@ -13,7 +13,7 @@ namespace Xmf2.Common.Extensions
 			{
 				return memStream.ToArray();
 			}
-			else if (stream.TryGetLength(out var length))
+			else if (stream.TryGetLength(out long length))
 			{
 				var bytes = new byte[length];
 				stream.Read(bytes, 0, (int)length);
@@ -21,11 +21,9 @@ namespace Xmf2.Common.Extensions
 			}
 			else
 			{
-				using (var tempStream = new MemoryStream())
-				{
-					stream.CopyTo(tempStream);
-					return tempStream.ToArray();
-				}
+				using var tempStream = new MemoryStream();
+				stream.CopyTo(tempStream);
+				return tempStream.ToArray();
 			}
 		}
 
@@ -35,7 +33,7 @@ namespace Xmf2.Common.Extensions
 			{
 				return memStream.ToArray();
 			}
-			else if (stream.TryGetLength(out var length))
+			else if (stream.TryGetLength(out long length))
 			{
 				var bytes = new byte[length];
 				await stream.ReadAsync(bytes, 0, (int)length, ct);
@@ -43,11 +41,9 @@ namespace Xmf2.Common.Extensions
 			}
 			else
 			{
-				using (var tempStream = new MemoryStream())
-				{
-					await stream.CopyToAsync(tempStream, 4096, ct);
-					return tempStream.ToArray();
-				}
+				using var tempStream = new MemoryStream();
+				await stream.CopyToAsync(tempStream, 4096, ct);
+				return tempStream.ToArray();
 			}
 		}
 

@@ -10,17 +10,14 @@ namespace Xmf2.Common.Collections
 		/// <summary>
 		/// Regroupe les items d'un IEnumerable ayant consécutivement la même valeur.
 		/// </summary>
-		public static IEnumerable<IGrouping<T, T>> Partitioned<T>(this IEnumerable<T> source)
-		{
-			return source.PartitionBy(x => x);
-		}
+		public static IEnumerable<IGrouping<T, T>> Partitioned<T>(this IEnumerable<T> source) => source.PartitionBy(x => x);
 
 		/// <summary>
 		/// Regroupe les items d'un IEnumerable ayant consécutivement la même valeur.
 		/// </summary>
 		/// <example>
 		///		//Compare results of PartitionBy vs GroupBy
-		///		
+		///
 		///		IEnumerable<char> values = "HELlO WORLD";
 		///		foreach (var group in values.PartitionBy(char.ToLower).Where(x => x.Key == 'l' || x.Key == 'o'))
 		///			Console.WriteLine($"{group.Key} {group.Count()}");
@@ -38,34 +35,32 @@ namespace Xmf2.Common.Collections
 		/// </example>
 		public static IEnumerable<IGrouping<TKey, TElement>> PartitionBy<TElement, TKey>(this IEnumerable<TElement> source, Func<TElement, TKey> selector)
 		{
-			using (var enumerator = source.GetEnumerator())
+			using IEnumerator<TElement> enumerator = source.GetEnumerator();
+			bool moveNext = enumerator.MoveNext();
+			EqualityComparer<TKey> equalityComparer = moveNext ? EqualityComparer<TKey>.Default : null;
+			while (moveNext)
 			{
-				bool moveNext = enumerator.MoveNext();
-				var equalityComparer = moveNext ? EqualityComparer<TKey>.Default : null;
-				while (moveNext)
+				TKey partitionKey = selector(enumerator.Current);
+				yield return new PartitionGroup<TKey, TElement>(partitionKey, GetPartition(partitionKey).ToList());
+			}
+			IEnumerable<TElement> GetPartition(TKey key)
+			{
+				bool firstOfSeries = true;
+				bool sameSeries = true;
+				do
 				{
-					var partitionKey = selector(enumerator.Current);
-					yield return new PartitionGroup<TKey, TElement>(partitionKey, GetPartition(partitionKey).ToList());
-				}
-				IEnumerable<TElement> GetPartition(TKey key)
-				{
-					var firstOfSeries = true;
-					var sameSeries = true;
-					do
+					TElement current = enumerator.Current;
+					if (firstOfSeries || equalityComparer.Equals(key, selector(current)))
 					{
-						var current = enumerator.Current;
-						if (firstOfSeries || equalityComparer.Equals(key, selector(current)))
-						{
-							yield return current;
-							firstOfSeries = false;
-							moveNext = enumerator.MoveNext();
-						}
-						else
-						{
-							sameSeries = false;
-						}
-					} while (moveNext && sameSeries);
-				}
+						yield return current;
+						firstOfSeries = false;
+						moveNext = enumerator.MoveNext();
+					}
+					else
+					{
+						sameSeries = false;
+					}
+				} while (moveNext && sameSeries);
 			}
 		}
 

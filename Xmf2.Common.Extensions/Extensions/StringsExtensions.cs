@@ -12,8 +12,6 @@ namespace Xmf2.Common.Extensions
 
 		public static string NullIfEmpty(this string source) => string.IsNullOrEmpty(source) ? null : source;
 
-		public static bool IsPriceOrNull(this decimal? price) => price is null || price >= 0;
-
 		public static string[] Split(this string s, char separator, StringSplitOptions options) => s.Split(new[]
 		{
 			separator

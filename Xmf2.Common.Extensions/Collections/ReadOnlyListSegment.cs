@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Xmf2.Common
+namespace Xmf2.Common.Collections
 {
 	internal readonly struct ReadOnlyListSegment<T> : IReadOnlyList<T>
 	{
@@ -17,18 +17,22 @@ namespace Xmf2.Common
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
+
 			if (offset < 0)
 			{
 				throw new ArgumentOutOfRangeException(nameof(offset));
 			}
+
 			if (count < 0)
 			{
 				throw new ArgumentOutOfRangeException(nameof(count));
 			}
+
 			if (offset + count > source.Count)
 			{
 				throw new ArgumentException($"{nameof(offset)} and {nameof(count)} where out of bound of {nameof(source)}");
 			}
+
 			_source = source;
 			_offset = offset;
 			Count = count;
@@ -42,10 +46,12 @@ namespace Xmf2.Common
 				{
 					throw new ArgumentOutOfRangeException(nameof(index));
 				}
+
 				if (index >= Count)
 				{
 					throw new ArgumentOutOfRangeException(nameof(index));
 				}
+
 				return _source[_offset + index];
 			}
 		}

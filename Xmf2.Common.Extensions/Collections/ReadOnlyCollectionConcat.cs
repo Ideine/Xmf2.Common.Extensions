@@ -14,13 +14,9 @@ namespace Xmf2.Common.Collections
 
 		private class ReadOnlyListConcat<T> : ReadOnlyCollectionConcat<IReadOnlyList<T>, T>, IReadOnlyList<T>
 		{
-			public ReadOnlyListConcat(IReadOnlyList<T> collectionA, IReadOnlyList<T> collectionB)
-				: base(collectionA, collectionB)
-			{
-			}
+			public ReadOnlyListConcat(IReadOnlyList<T> collectionA, IReadOnlyList<T> collectionB) : base(collectionA, collectionB) { }
 
-			public T this[int index] => index < CollectionA.Count ? CollectionA[index]
-																  : CollectionB[index - CollectionA.Count];
+			public T this[int index] => index < CollectionA.Count ? CollectionA[index] : CollectionB[index - CollectionA.Count];
 		}
 
 		private class ReadOnlyCollectionConcat<TCol, T> : IReadOnlyCollection<T>
