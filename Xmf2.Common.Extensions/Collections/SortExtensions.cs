@@ -29,19 +29,6 @@ namespace Xmf2.Common.Collections
 		public static void Sort<T, TCompareA, TCompareB>(
 			this List<T> list,
 			Func<T, TCompareA> sortByA,
-			Func<T, TCompareA> thenByB)
-		{
-			var comparerA = Comparer<TCompareA>.Default;
-			var comparerB = Comparer<TCompareA>.Default;
-			list.Sort(
-				(x, y) => comparerA.Compare(sortByA(x), sortByA(y)),
-				(x, y) => comparerB.Compare(thenByB(x), thenByB(y))
-			);
-		}
-
-		public static void Sort<T, TCompareA, TCompareB>(
-			this List<T> list,
-			Func<T, TCompareA> sortByA,
 			Func<T, TCompareB> thenByB)
 		{
 			var comparerA = Comparer<TCompareA>.Default;
