@@ -14,7 +14,7 @@
 		<Description>Ideine extensions for netstandard class</Description>
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
-		<PackageReleaseNotes>Add ToDictionary Extensions</PackageReleaseNotes>
+		<PackageReleaseNotes>Add ToDictionary Extensions and some List Sort Extensions</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
