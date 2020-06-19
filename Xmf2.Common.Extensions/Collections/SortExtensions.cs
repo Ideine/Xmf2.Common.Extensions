@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Xmf2.Common.Extensions;
 
 namespace Xmf2.Common.Collections
 {
@@ -13,17 +14,7 @@ namespace Xmf2.Common.Collections
 
 		public static void Sort<T>(this List<T> list, params Comparison<T>[] comparisons)
 		{
-			list.Sort(ByCombinedComparisons);
-
-			int ByCombinedComparisons(T x, T y)
-			{
-				int result = 0;
-				for (int i = 0 ; i < comparisons.Length && result == 0 ; i++)
-				{
-					result = comparisons[i](x, y);
-				}
-				return result;
-			}
+			list.Sort(comparisons.Combine());
 		}
 
 		public static void Sort<T, TCompareA, TCompareB>(
