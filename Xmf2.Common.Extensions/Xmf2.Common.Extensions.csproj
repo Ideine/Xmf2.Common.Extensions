@@ -7,14 +7,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageVersion>1.1.11</PackageVersion>
+		<PackageVersion>1.1.12</PackageVersion>
 		<Title>Xmf2.Common.Extensions</Title>
 		<PackageId>Xmf2.Common.Extensions</PackageId>
 		<Authors>Ideine, VJubert</Authors>
 		<Description>Ideine extensions for netstandard class</Description>
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
-		<PackageReleaseNotes>Deleted HashsetExtensions.ToHashSet(IEnumerable) conflicting with System.Linq.Enumerable.ToHashSet(IEnumerable) in netstandard2.1</PackageReleaseNotes>
+		<PackageReleaseNotes>Add TryExecute for ICommand</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
