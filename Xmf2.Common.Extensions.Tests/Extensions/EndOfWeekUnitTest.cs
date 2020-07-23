@@ -16,7 +16,7 @@ namespace Xmf2.Common.Tests.Extensions
 		}
 
 		[Fact]
-		public static void BeginningOfWeekTest()
+		public static void EndOfWeekTest()
 		{
 			// tuesday may 19 
 			var tuesday = new DateTime(2020, 05, 19);
@@ -29,8 +29,8 @@ namespace Xmf2.Common.Tests.Extensions
 		{
 			//friday may 22 
 			var friday = new DateTime(2020, 05, 22);
-			DateTime end = friday.EndOfWeek(DayOfWeek.Wednesday);
-			Assert.Equal(new DateTime(2020, 05, 27), end);
+			DateTime end = friday.EndOfWeek(startDayOfWeek: DayOfWeek.Wednesday);
+			Assert.Equal(new DateTime(2020, 05, 26), end);
 		}
 	}
 }
