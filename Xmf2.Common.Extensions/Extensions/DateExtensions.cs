@@ -29,6 +29,11 @@ namespace Xmf2.Common.Extensions
 			return date.AddDays(-1 * diff).Date;
 		}
 
+		public static DateTime EndOfWeek(this DateTime date, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
+		{
+			return date.AddDays(7).BeginningOfWeek(startDayOfWeek).AddDays(-1).Date;
+		}
+
 		public static bool IsSameDay(this DateTime firstDate, DateTime secondDate)
 		{
 			return firstDate.IsSameMonth(secondDate) && firstDate.Day == secondDate.Day;
@@ -77,6 +82,12 @@ namespace Xmf2.Common.Extensions
 			int diff = (7 + (date.DayOfWeek - startDayOfWeek)) % 7;
 			return date.AddDays(-1 * diff).Date;
 		}
+
+		public static DateTimeOffset EndOfWeek(this DateTimeOffset date, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
+		{
+			return date.AddDays(7).BeginningOfWeek(startDayOfWeek).AddDays(-1).Date;
+		}
+
 
 		public static bool IsSameDay(this DateTimeOffset firstDate, DateTimeOffset secondDate)
 		{
