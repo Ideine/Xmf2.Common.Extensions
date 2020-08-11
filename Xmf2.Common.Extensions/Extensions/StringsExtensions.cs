@@ -6,6 +6,33 @@ namespace Xmf2.Common.Extensions
 {
 	public static class StringsExtensions
 	{
+		public static bool TryGetLastIndexOf(this string s, char value, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, char value, int startIndex, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, char value, int startIndex, int count, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex, count)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, int startIndex, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, int startIndex, int count, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex, count)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, int startIndex, int count, StringComparison comparisonType, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex, count, comparisonType)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, int startIndex, StringComparison comparisonType, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, startIndex, comparisonType)) != -1;
+
+		public static bool TryGetLastIndexOf(this string s, string value, StringComparison comparisonType, out int lastIndex)
+			=> (lastIndex = s.LastIndexOf(value, comparisonType)) != -1;
+
 		public static string NormalizeEmail(this string email) => string.IsNullOrEmpty(email) ? email : email.Trim().ToLowerInvariant();
 
 		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
