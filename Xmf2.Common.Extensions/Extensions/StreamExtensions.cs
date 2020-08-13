@@ -7,6 +7,52 @@ namespace Xmf2.Common.Extensions
 {
 	public static class StreamExtensions
 	{
+		/// <summary>
+		/// Avoid copy input <paramref name="stream"/> if it's already a <see cref="MemoryStream"/>
+		/// </summary>
+		public static MemoryStream AsMemoryStream(this Stream stream)
+		{
+			if (stream is MemoryStream memStream)
+			{
+				return memStream;
+			}
+			else if (stream.TryGetLength(out long length))
+			{
+				var bytes = new byte[length];
+				stream.Read(bytes, 0, (int)length);
+				return new MemoryStream(bytes);
+			}
+			else
+			{
+				using var tempStream = new MemoryStream();
+				stream.CopyTo(tempStream);
+				return tempStream;
+			}
+		}
+
+		/// <summary>
+		/// Avoid copy input <paramref name="stream"/> if it's already a <see cref="MemoryStream"/>
+		/// </summary>
+		public static async Task<MemoryStream> AsMemoryStream(this Stream stream, CancellationToken ct = default)
+		{
+			if (stream is MemoryStream memStream)
+			{
+				return memStream;
+			}
+			else if (stream.TryGetLength(out long length))
+			{
+				var bytes = new byte[length];
+				stream.Read(bytes, 0, (int)length);
+				return new MemoryStream(bytes);
+			}
+			else
+			{
+				using var tempStream = new MemoryStream();
+				await stream.CopyToAsync(tempStream);
+				return tempStream;
+			}
+		}
+
 		public static byte[] ToArray(this Stream stream)
 		{
 			if (stream is MemoryStream memStream)
