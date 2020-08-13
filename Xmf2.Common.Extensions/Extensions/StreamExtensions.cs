@@ -33,7 +33,7 @@ namespace Xmf2.Common.Extensions
 		/// <summary>
 		/// Avoid copy input <paramref name="stream"/> if it's already a <see cref="MemoryStream"/>
 		/// </summary>
-		public static async Task<MemoryStream> AsMemoryStream(this Stream stream, CancellationToken ct = default)
+		public static async Task<MemoryStream> AsMemoryStreamAsync(this Stream stream, CancellationToken ct = default)
 		{
 			if (stream is MemoryStream memStream)
 			{

@@ -14,7 +14,7 @@
 		<Description>Ideine extensions for netstandard class</Description>
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
-		<PackageReleaseNotes>Added StreamExtensions.AsMemoryStream</PackageReleaseNotes>
+		<PackageReleaseNotes>Adds StreamExtensions.AsMemoryStream</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
