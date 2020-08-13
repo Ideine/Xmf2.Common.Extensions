@@ -26,6 +26,7 @@ namespace Xmf2.Common.Extensions
 			{
 				using var tempStream = new MemoryStream();
 				stream.CopyTo(tempStream);
+				tempStream.Seek(0, SeekOrigin.Begin);
 				return tempStream;
 			}
 		}
@@ -49,6 +50,7 @@ namespace Xmf2.Common.Extensions
 			{
 				using var tempStream = new MemoryStream();
 				await stream.CopyToAsync(tempStream);
+				tempStream.Seek(0, SeekOrigin.Begin);
 				return tempStream;
 			}
 		}
