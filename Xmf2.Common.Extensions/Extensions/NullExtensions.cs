@@ -9,11 +9,12 @@ namespace Xmf2.Common.Extensions
 
 		public static string ValueIfNull(this string s, string value) => s ?? value;
 
+		[Obsolete("Use Nullable<T>.GetValueOrDefault(T)")]
+		public static bool ValueIfNull(this bool? s, bool value) => s.GetValueOrDefault(value);
+
 		public static int? ValueIfNull(this int? s, int? value) => s ?? value;
 
 		public static bool? ValueIfNull(this bool? s, bool? value) => s ?? value;
-
-		public static bool ValueIfNull(this bool? s, bool value) => s ?? value;
 
 		public static double? ValueIfNull(this double? s, double? value) => s ?? value;
 
