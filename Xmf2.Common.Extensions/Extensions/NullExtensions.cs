@@ -42,5 +42,11 @@ namespace Xmf2.Common.Extensions
 		public static async Task<bool> FalseIfNotNull<T>(this Task<T> o) => (await o).FalseIfNotNull();
 
 		#endregion
+
+		public static bool IsNullOrNotDefault<T>(this T? nullable)
+			where T : struct, IEquatable<T>
+		{
+			return !nullable.HasValue || !nullable.Value.Equals(default);
+		}
 	}
 }
