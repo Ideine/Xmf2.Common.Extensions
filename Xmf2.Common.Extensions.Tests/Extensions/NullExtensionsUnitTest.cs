@@ -7,40 +7,50 @@ namespace Xmf2.Common.Tests.Extensions
 	public class NullExtensionsUnitTest
 	{
 		[Fact]
-		public static void WorksWithBool() => CheckWithType(nonDefaultValue: !default(bool));
+		public static void WorksWithString() => CheckWithClass(nonDefaultValue: "hello");
 
 		[Fact]
-		public static void WorksWithInt() => CheckWithType(nonDefaultValue: 1);
+		public static void WorksWithBool() => CheckWithStruct(nonDefaultValue: !default(bool));
 
 		[Fact]
-		public static void WorksWithFloat() => CheckWithType(nonDefaultValue: 1f);
+		public static void WorksWithInt() => CheckWithStruct(nonDefaultValue: 1);
 
 		[Fact]
-		public static void WorksWithDouble() => CheckWithType(nonDefaultValue: 1d);
+		public static void WorksWithFloat() => CheckWithStruct(nonDefaultValue: 1f);
 
 		[Fact]
-		public static void WorksWithDatetime() => CheckWithType(nonDefaultValue: DateTime.Now);
+		public static void WorksWithDouble() => CheckWithStruct(nonDefaultValue: 1d);
 
 		[Fact]
-		public static void WorksWithDateTimeOffset() => CheckWithType(nonDefaultValue: DateTimeOffset.Now);
+		public static void WorksWithDatetime() => CheckWithStruct(nonDefaultValue: DateTime.Now);
 
 		[Fact]
-		public static void WorksWithDecimal() => CheckWithType(nonDefaultValue: 1m);
+		public static void WorksWithDateTimeOffset() => CheckWithStruct(nonDefaultValue: DateTimeOffset.Now);
 
 		[Fact]
-		public static void WorksWithGuid() => CheckWithType(nonDefaultValue: Guid.NewGuid());
+		public static void WorksWithDecimal() => CheckWithStruct(nonDefaultValue: 1m);
 
-		private static void CheckWithType<T>(T nonDefaultValue)
+		[Fact]
+		public static void WorksWithGuid() => CheckWithStruct(nonDefaultValue: Guid.NewGuid());
+
+		private static void CheckWithStruct<T>(T nonDefaultValue)
 			where T : struct, IEquatable<T>
 		{
 			T? nullT = null;
-			Assert.True(nullT.IsNullOrNotDefault());
+			Assert.Equal(new T?(nonDefaultValue), nullT.ValueIfNull(new T?(nonDefaultValue)));
 
 			T? nonDefaultNullableT = nonDefaultValue;
-			Assert.True(nonDefaultNullableT.IsNullOrNotDefault());
+			Assert.Equal(nonDefaultValue, nonDefaultNullableT.ValueIfNull(new T?(default)));
+		}
 
-			T? defaultT = default(T);
-			Assert.False(defaultT.IsNullOrNotDefault());
+		private static void CheckWithClass<T>(T nonDefaultValue)
+			where T : class, IEquatable<T>
+		{
+			T nullT = null;
+			Assert.Equal(nonDefaultValue, nullT.ValueIfNull(nonDefaultValue));
+
+			T nonDefaultNullableT = nonDefaultValue;
+			Assert.Equal(nonDefaultValue, nonDefaultNullableT.ValueIfNull(null));
 		}
 	}
 }
