@@ -37,6 +37,8 @@ namespace Xmf2.Common.Extensions
 
 		public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
 
+		public static bool NotNullOrWhiteSpace(this string s) => !string.IsNullOrWhiteSpace(s);
+
 		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
 
 		public static string NullIfEmpty(this string source) => string.IsNullOrEmpty(source) ? null : source;
