@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{FE8B7094-D688-4390-9257-6857A4B546D6}"
 	ProjectSection(SolutionItems) = preProject
 		misc\.azure.ci.yml = misc\.azure.ci.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmf2.Common.Extensions.Tests", "Xmf2.Common.Extensions.Tests\Xmf2.Common.Extensions.Tests.csproj", "{D5081150-7A75-43A6-889E-F0F4EE4B158B}"

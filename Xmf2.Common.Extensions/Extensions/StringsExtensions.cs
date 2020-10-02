@@ -6,6 +6,8 @@ namespace Xmf2.Common.Extensions
 {
 	public static class StringsExtensions
 	{
+		#region TryGetLastIndexOf
+
 		public static bool TryGetLastIndexOf(this string s, char value, out int lastIndex)
 			=> (lastIndex = s.LastIndexOf(value)) != -1;
 
@@ -33,17 +35,28 @@ namespace Xmf2.Common.Extensions
 		public static bool TryGetLastIndexOf(this string s, string value, StringComparison comparisonType, out int lastIndex)
 			=> (lastIndex = s.LastIndexOf(value, comparisonType)) != -1;
 
+		#endregion
+
+		/// <summary>
+		/// If input is not null or empty, trim the sequence and apply ToLowerInvariant to it
+		/// </summary>
 		public static string NormalizeEmail(this string email) => string.IsNullOrEmpty(email) ? email : email.Trim().ToLowerInvariant();
 
+		/// <summary>
+		/// <see cref="string.IsNullOrWhiteSpace"/>
+		/// </summary>
 		public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
 
+		/// <summary>
+		/// Negate the result or <see cref="string.IsNullOrWhiteSpace"/>
+		/// </summary>
 		public static bool NotNullOrWhiteSpace(this string s) => !string.IsNullOrWhiteSpace(s);
 
 		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
 
 		public static string NullIfEmpty(this string source) => string.IsNullOrEmpty(source) ? null : source;
 
-		public static string[] Split(this string s, char separator, StringSplitOptions options) => s.Split(new[]
+		public static string[] Split(this string input, char separator, StringSplitOptions options) => input.Split(new[]
 		{
 			separator
 		}, options);

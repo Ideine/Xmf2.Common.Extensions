@@ -43,7 +43,7 @@ namespace Xmf2.Common.Extensions
 			else if (stream.TryGetLength(out long length))
 			{
 				var bytes = new byte[length];
-				stream.Read(bytes, 0, (int)length);
+				await stream.ReadAsync(bytes, 0, (int)length, ct);
 				return new MemoryStream(bytes);
 			}
 			else
