@@ -21,7 +21,7 @@ namespace Xmf2.Common.Tests.Extensions
 			string lowerString = "abcdefghijklmnopqrstuvwxyz";
 			Assert.Equal("abcdefghijklmnopqrstuvwxyz", lowerString.NormalizeEmail());
 
-			string upperString = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ";
+			string upperString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			Assert.Equal("abcdefghijklmnopqrstuvwxyz", upperString.NormalizeEmail());
 
 			string mixedString = "abCDeFghiJKLmnopqRsTuvWXYZ";

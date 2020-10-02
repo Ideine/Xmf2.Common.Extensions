@@ -28,19 +28,19 @@ namespace Xmf2.Common.Tests.Extensions
 		public static void NotNullOrWhiteSpace()
 		{
 			string nullString = null;
-			Assert.False(nullString.IsNullOrWhiteSpace());
+			Assert.False(nullString.NotNullOrWhiteSpace());
 
 			string emptyString = string.Empty;
-			Assert.False(emptyString.IsNullOrWhiteSpace());
+			Assert.False(emptyString.NotNullOrWhiteSpace());
 
 			string whitespaceString = " ";
-			Assert.False(whitespaceString.IsNullOrWhiteSpace());
+			Assert.False(whitespaceString.NotNullOrWhiteSpace());
 
 			string nbspString = " ";
-			Assert.False(nbspString.IsNullOrWhiteSpace());
+			Assert.False(nbspString.NotNullOrWhiteSpace());
 
 			string notEmptyString = "abcde";
-			Assert.True(notEmptyString.IsNullOrWhiteSpace());
+			Assert.True(notEmptyString.NotNullOrWhiteSpace());
 		}
 	}
 }
