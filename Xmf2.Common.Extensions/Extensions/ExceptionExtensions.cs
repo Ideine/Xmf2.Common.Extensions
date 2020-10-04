@@ -11,7 +11,7 @@ namespace Xmf2.Common.Extensions
 		public static bool AnyToDescendant<T>(this Exception baseEx, Func<T, bool> action)
 			where T : Exception
 		{
-			var ex = baseEx;
+			Exception ex = baseEx;
 			while (ex != null)
 			{
 				if (ex is T typedException && action(typedException))
