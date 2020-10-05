@@ -15,6 +15,7 @@
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
 		<PackageReleaseNotes>Adds StringsExtensions.NotNullOrWhiteSpace(this string)</PackageReleaseNotes>
+		<PackageLicenseUrl>https://github.com/Ideine/Xmf2.Common.Extensions/blob/master/LICENSE</PackageLicenseUrl>
 		<RepositoryUrl>https://github.com/Ideine/Xmf2.Common.Extensions</RepositoryUrl>
 	</PropertyGroup>
 
@@ -26,6 +27,7 @@
 	  <None Remove=".editorconfig" />
 	  <None Remove=".gitignore" />
 	  <None Remove="README.md" />
+	  <None Remove="LICENSE" />
 	  <None Remove="misc/.azure.ci.yml" />
 	</ItemGroup>
 
