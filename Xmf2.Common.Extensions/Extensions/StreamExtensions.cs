@@ -10,7 +10,7 @@ namespace Xmf2.Common.Extensions
 		/// <summary>
 		/// Avoid copy input <paramref name="stream"/> if it's already a <see cref="MemoryStream"/>
 		/// </summary>
-		public static MemoryStream AsMemoryStream(this Stream stream)
+		public static MemoryStream AsMemoryStream(this Stream stream, int? capacity = null)
 		{
 			if (stream is MemoryStream memStream)
 			{
@@ -24,7 +24,7 @@ namespace Xmf2.Common.Extensions
 			}
 			else
 			{
-				using var tempStream = new MemoryStream();
+				using var tempStream = capacity.HasValue ? new MemoryStream(capacity.Value) : new MemoryStream();
 				stream.CopyTo(tempStream);
 				tempStream.Seek(0, SeekOrigin.Begin);
 				return tempStream;
@@ -34,7 +34,7 @@ namespace Xmf2.Common.Extensions
 		/// <summary>
 		/// Avoid copy input <paramref name="stream"/> if it's already a <see cref="MemoryStream"/>
 		/// </summary>
-		public static async Task<MemoryStream> AsMemoryStreamAsync(this Stream stream, CancellationToken ct = default)
+		public static async Task<MemoryStream> AsMemoryStreamAsync(this Stream stream, CancellationToken ct = default, int? capacity = null)
 		{
 			if (stream is MemoryStream memStream)
 			{
@@ -48,7 +48,7 @@ namespace Xmf2.Common.Extensions
 			}
 			else
 			{
-				using var tempStream = new MemoryStream();
+				using var tempStream = capacity.HasValue ? new MemoryStream(capacity.Value) : new MemoryStream();
 				await stream.CopyToAsync(tempStream);
 				tempStream.Seek(0, SeekOrigin.Begin);
 				return tempStream;
