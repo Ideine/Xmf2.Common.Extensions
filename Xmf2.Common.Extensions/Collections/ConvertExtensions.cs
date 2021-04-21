@@ -7,6 +7,16 @@ namespace Xmf2.Common.Collections
 {
 	public static class ConvertExtensions
 	{
+		public static async Task<List<T>> ToListAsync<T>(this IEnumerable<Task<T>> source, int? capacity = null)
+		{
+			var result = capacity.HasValue ? new List<T>(capacity.Value) : new List<T>();
+			foreach (var item in source)
+			{
+				result.Add(await item);
+			}
+			return result;
+		}
+
 		public static async Task<List<T>> ToListAsync<T>(this Task<IEnumerable<T>> source) => (await source).ToList();
 
 		public static TOutput[] ToArray<TInput, TOutput>(this IReadOnlyList<TInput> list, Func<TInput, TOutput> selector)
