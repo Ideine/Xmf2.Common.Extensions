@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Xmf2.Common.Extensions
 {
@@ -137,6 +136,10 @@ namespace Xmf2.Common.Extensions
 
 		public ByPropEqualityComparer(Func<T, TPropA> selector, IEqualityComparer<TPropA> equalityComparer)
 		{
+			if (selector is null)
+			{
+				throw new ArgumentNullException(nameof(selector));
+			}
 			if (equalityComparer is null)
 			{
 				throw new ArgumentNullException(nameof(equalityComparer));
