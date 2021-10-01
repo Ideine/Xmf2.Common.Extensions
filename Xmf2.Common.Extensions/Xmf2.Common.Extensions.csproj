@@ -7,14 +7,14 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageVersion>1.1.22</PackageVersion>
+		<PackageVersion>1.1.23</PackageVersion>
 		<Title>Xmf2.Common.Extensions</Title>
 		<PackageId>Xmf2.Common.Extensions</PackageId>
 		<Authors>Ideine, VJubert</Authors>
 		<Description>Ideine extensions for netstandard class</Description>
 		<Copyright>2020 Ideine</Copyright>
 		<PackageTags>xmf2 ideine extensions netstandard</PackageTags>
-		<PackageReleaseNotes>Adds AndEqualityComparer, ByPropEqualityComparer</PackageReleaseNotes>
+		<PackageReleaseNotes>Add another version of TryGetFirst</PackageReleaseNotes>
 		<PackageLicenseUrl>https://github.com/Ideine/Xmf2.Common.Extensions/blob/master/LICENSE</PackageLicenseUrl>
 		<RepositoryUrl>https://github.com/Ideine/Xmf2.Common.Extensions</RepositoryUrl>
 	</PropertyGroup>
