@@ -12,6 +12,12 @@ namespace Xmf2.Common.Collections
 			return list;
 		}
 
+		public static List<T> SortByDesc<T, TU>(this List<T> list, Func<T, TU> sortBySelector)
+		{
+			list.Sort((a, b) => Comparer<TU>.Default.Compare(sortBySelector(b), sortBySelector(a)));
+			return list;
+		}
+
 		public static void Sort<T>(this List<T> list, params Comparison<T>[] comparisons)
 		{
 			list.Sort(comparisons.Combine());
