@@ -10,7 +10,7 @@ namespace Xmf2.Common.Tests.Collections
 		public static void ShouldAcceptEmptySource()
 		{
 			var source = new int[0];
-			Assert.Equal(0, source.Partitioned().Count());
+			Assert.Empty(source.Partitioned());
 		}
 
 		[Fact]
