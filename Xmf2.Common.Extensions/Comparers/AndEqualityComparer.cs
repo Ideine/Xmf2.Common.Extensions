@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Xmf2.Common.Extensions
+namespace Xmf2.Common.Comparers
 {
 	public class AndEqualityComparer<T> : IEqualityComparer<T>
 	{
@@ -19,12 +19,7 @@ namespace Xmf2.Common.Extensions
 
 		public int GetHashCode(T obj)
 		{
-			int result = 0;
-			for (var i = 0; i < _equalityComparers.Length; i++)
-			{
-				result ^= _equalityComparers[i].GetHashCode(obj);
-			}
-			return result;
+			return _equalityComparers.Aggregate(0, (current, t) => current ^ t.GetHashCode(obj));
 		}
 	}
 }
