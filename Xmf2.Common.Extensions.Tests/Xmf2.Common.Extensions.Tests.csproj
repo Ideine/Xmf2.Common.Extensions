@@ -6,6 +6,7 @@
     <IsPackable>false</IsPackable>
     <OutputType>Library</OutputType>
     <RootNamespace>Xmf2.Common.Tests</RootNamespace>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

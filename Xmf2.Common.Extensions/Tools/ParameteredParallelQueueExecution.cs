@@ -6,7 +6,7 @@ namespace Xmf2.Common.Tools
 {
 	public class ParameteredParallelQueueExecution<TParameter, TResult>
 	{
-		private readonly ConcurrentDictionary<TParameter, BackgroundQueueWorker<WorkerItem>> _handlers = new ConcurrentDictionary<TParameter, BackgroundQueueWorker<WorkerItem>>();
+		private readonly ConcurrentDictionary<TParameter, BackgroundQueueWorker<WorkerItem>> _handlers = new();
 
 		public Task<TResult> Execute(TParameter parameter, Func<TResult> executor) => Execute(parameter, () => Task.Run(executor));
 

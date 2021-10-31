@@ -13,7 +13,7 @@ namespace Xmf2.Common.Extensions
 
 		public static Comparison<T> Combine<T>(this IReadOnlyList<Comparison<T>> comparisons)
 		{
-			return ((T x, T y) => ByCombinedComparisons(x, y));
+			return ByCombinedComparisons;
 
 			int ByCombinedComparisons(T x, T y)
 			{

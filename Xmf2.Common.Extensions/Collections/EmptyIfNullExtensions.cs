@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace Xmf2.Common.Collections
 
 		private static class EmptyArray<T>
 		{
-			public static readonly T[] SINGLETON = new T[0];
+			public static readonly T[] SINGLETON = Array.Empty<T>();
 		}
 	}
 }
