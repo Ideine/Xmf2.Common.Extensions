@@ -10,18 +10,18 @@ namespace Xmf2.Common.Tests.Collections
 		public static void ShouldConcat()
 		{
 			IReadOnlyList<int> a = new int[] { };
-			IReadOnlyList<int> b = new int[] { 0, 1, 2 };
+			IReadOnlyList<int> b = new[] { 0, 1, 2 };
 			CheckAssertions(onEnum: a.Concat(b));
 
-			a = new int[] { 0};
-			b = new int[] { 1, 2 };
+			a = new[] { 0};
+			b = new[] { 1, 2 };
 			CheckAssertions(onEnum: a.Concat(b));
 
-			a = new int[] { 0, 1 };
-			b = new int[] { 2 };
+			a = new[] { 0, 1 };
+			b = new[] { 2 };
 			CheckAssertions(onEnum: a.Concat(b));
 
-			a = new int[] { 0, 1, 2 };
+			a = new[] { 0, 1, 2 };
 			b = new int[] { };
 			CheckAssertions(onEnum: a.Concat(b));
 
@@ -37,7 +37,7 @@ namespace Xmf2.Common.Tests.Collections
 				Assert.Equal(3, onEnum.Count);
 
 				//Check sequence
-				Assert.Equal(new int[] { 0, 1, 2 }, onEnum);
+				Assert.Equal(new[] { 0, 1, 2 }, onEnum);
 
 				//Check enumerator
 				int j = 0;

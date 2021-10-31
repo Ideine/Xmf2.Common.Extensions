@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Xmf2.Common.Collections;
 using Xunit;
 
@@ -9,24 +10,24 @@ namespace Xmf2.Common.Tests.Collections
 		[Fact]
 		public static void ShouldAcceptEmptySource()
 		{
-			var source = new int[0];
+			int[] source = Array.Empty<int>();
 			Assert.Empty(source.Partitioned());
 		}
 
 		[Fact]
 		public static void ShouldBreakOnChange()
 		{
-			var source = new char[] {
+			char[] source = {
 				'a', 'a',
 				'b', 'b',
 				'c',
 				'a' };
 			Assert.Equal(4, source.Partitioned().Count());
 
-			var groupA		= source.Partitioned().Skip(0).First();
-			var groupB		= source.Partitioned().Skip(1).First();
-			var groupC		= source.Partitioned().Skip(2).First();
-			var groupAPrime = source.Partitioned().Skip(3).First();
+			IGrouping<char, char> groupA		= source.Partitioned().Skip(0).First();
+			IGrouping<char, char> groupB		= source.Partitioned().Skip(1).First();
+			IGrouping<char, char> groupC		= source.Partitioned().Skip(2).First();
+			IGrouping<char, char> groupAPrime = source.Partitioned().Skip(3).First();
 
 			Assert.Equal('a', groupA.Key);
 			Assert.Equal(new [] { 'a', 'a' }, groupA);

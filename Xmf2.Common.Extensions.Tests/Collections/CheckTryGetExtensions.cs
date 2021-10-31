@@ -1,4 +1,5 @@
-﻿using Xmf2.Common.Collections;
+﻿using System;
+using Xmf2.Common.Collections;
 using Xunit;
 
 namespace Xmf2.Common.Tests.Collections
@@ -8,11 +9,11 @@ namespace Xmf2.Common.Tests.Collections
 		[Fact]
 		public static void TryGetMinWorks()
 		{
-			var sourceA = new int[] { 1, 2, 3, 4 };
-			var sourceEmpty = new int[0];
-			var sourceB = new int[] { 4, 3, 2, 1 };
-			var sourceC = new int[] { 2, 2, 5, 5 };
-			var sourceD = new int[] { 6 };
+			int[] sourceA = { 1, 2, 3, 4 };
+			int[] sourceEmpty = Array.Empty<int>();
+			int[] sourceB = { 4, 3, 2, 1 };
+			int[] sourceC = { 2, 2, 5, 5 };
+			int[] sourceD = { 6 };
 			bool found;
 
 			found = sourceA.TryGetMin(selector: x => x, out int value);
@@ -34,11 +35,11 @@ namespace Xmf2.Common.Tests.Collections
 		[Fact]
 		public static void TryGetMaxWorks()
 		{
-			var sourceA = new int[] { 1, 2, 3, 4 };
-			var sourceEmpty = new int[0];
-			var sourceB = new int[] { 4, 3, 2, 1 };
-			var sourceC = new int[] { 2, 2, 5, 5 };
-			var sourceD = new int[] { 6 };
+			int[] sourceA = { 1, 2, 3, 4 };
+			int[] sourceEmpty = Array.Empty<int>();
+			int[] sourceB = { 4, 3, 2, 1 };
+			int[] sourceC = { 2, 2, 5, 5 };
+			int[] sourceD = { 6 };
 			bool found;
 
 			found = sourceA.TryGetMax(selector: x => x, out int value);

@@ -9,9 +9,7 @@ namespace Xmf2.Common.Tests.Collections
 		[Fact]
 		public static void SortByMultipleComparerWorks()
 		{
-			List<Foo> list;
-
-			list = GetTestList();
+			List<Foo> list = GetTestList();
 			list.Sort(
 				(x, y) => Comparer<int>.Default.Compare(x.SomeInt, y.SomeInt),
 				(x, y) => Comparer<string>.Default.Compare(x.SomeString, y.SomeString)

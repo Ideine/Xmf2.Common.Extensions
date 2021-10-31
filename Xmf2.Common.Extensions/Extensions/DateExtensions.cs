@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Xmf2.Common.Collections;
 
 namespace Xmf2.Common.Extensions
 {
@@ -152,6 +153,6 @@ namespace Xmf2.Common.Extensions
 		/// <summary>
 		/// Return the greatest date in all enumerable
 		/// </summary>
-		public static DateTime MaxMany(this IEnumerable<IEnumerable<DateTime>> enums) => enums.SelectMany(x => x ?? new List<DateTime>(0)).Max();
+		public static DateTime MaxMany(this IEnumerable<IEnumerable<DateTime>> enums) => enums.SelectManySafe(x => x).Max();
 	}
 }
