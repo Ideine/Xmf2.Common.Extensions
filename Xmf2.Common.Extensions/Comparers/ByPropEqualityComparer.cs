@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Xmf2.Common.Extensions
+namespace Xmf2.Common.Comparers
 {
 	public static class ByPropEqualityComparer<T>
 	{
@@ -9,6 +9,7 @@ namespace Xmf2.Common.Extensions
 		{
 			return new ByPropEqualityComparer<T, TProp>(selector);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB)
@@ -18,6 +19,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorB)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -29,6 +31,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorC)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -40,6 +43,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorC)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -55,6 +59,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorE)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -72,6 +77,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorF)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -91,6 +97,7 @@ namespace Xmf2.Common.Extensions
 				Instanciate(selectorG)
 			);
 		}
+
 		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG, TPropH>(
 			Func<T, TPropA> selectorA,
 			Func<T, TPropB> selectorB,
@@ -126,41 +133,38 @@ namespace Xmf2.Common.Extensions
 
 		public ByPropEqualityComparer(Func<T, TPropA> selector)
 		{
-			if (selector is null)
-			{
-				throw new ArgumentNullException(nameof(selector));
-			}
-			_selector = selector;
+			_selector = selector ?? throw new ArgumentNullException(nameof(selector));
 			_propEqualityComparer = EqualityComparer<TPropA>.Default;
 		}
 
 		public ByPropEqualityComparer(Func<T, TPropA> selector, IEqualityComparer<TPropA> equalityComparer)
 		{
-			if (selector is null)
-			{
-				throw new ArgumentNullException(nameof(selector));
-			}
-			if (equalityComparer is null)
-			{
-				throw new ArgumentNullException(nameof(equalityComparer));
-			}
-			_selector = selector;
-			_propEqualityComparer = equalityComparer;
+			_selector = selector ?? throw new ArgumentNullException(nameof(selector));
+			_propEqualityComparer = equalityComparer ?? throw new ArgumentNullException(nameof(equalityComparer));
 		}
 
 		public bool Equals(T x, T y)
 		{
-			return x == null
-				 ? y == null
-				 : y == null ? false
-							 : _propEqualityComparer.Equals(_selector(x), _selector(y));
+			if (x == null)
+			{
+				return y == null;
+			}
+			else
+			{
+				return y != null && _propEqualityComparer.Equals(_selector(x), _selector(y));
+			}
 		}
 
 		public int GetHashCode(T obj)
 		{
-			return obj == null
-				 ? 0
-				 : _propEqualityComparer.GetHashCode(_selector(obj));
+			if (obj is null)
+			{
+				return 0;
+			}
+			else
+			{
+				return _propEqualityComparer.GetHashCode(_selector(obj));
+			}
 		}
 	}
 }
