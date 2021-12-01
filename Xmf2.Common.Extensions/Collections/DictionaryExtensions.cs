@@ -6,7 +6,7 @@ namespace Xmf2.Common.Collections
 	{
 		public static void Add<TKey, TKey2, TValue>(this Dictionary<TKey, Dictionary<TKey2, TValue>> items, TKey key, TKey2 key2, TValue value)
 		{
-			if (!items.TryGetValue(key, out var d))
+			if (!items.TryGetValue(key, out Dictionary<TKey2, TValue> d))
 			{
 				items.Add(key, d = new Dictionary<TKey2, TValue>());
 			}
@@ -25,6 +25,12 @@ namespace Xmf2.Common.Collections
 				dictionary.Add(key, value);
 				return true;
 			}
+		}
+
+		public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> items, TKey key)
+		{
+			items.TryGetValue(key, out TValue value);
+			return value;
 		}
 	}
 }
