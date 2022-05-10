@@ -12,6 +12,7 @@ namespace Xmf2.Common.Collections
 			return Except(source, element.WrapInArray(), comparedBy, comparedBy);
 		}
 
+		[Obsolete("Use ExceptBy from Linq")]
 		public static IEnumerable<T> Except<T, TCompared>(this IEnumerable<T> source, IEnumerable<T> second, Func<T, TCompared> comparedBy)
 		{
 			return Except(source, second, comparedBy, comparedBy);

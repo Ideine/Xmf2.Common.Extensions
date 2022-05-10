@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Xmf2.Common.Collections
@@ -14,6 +15,9 @@ namespace Xmf2.Common.Collections
 			d[key2] = value;
 		}
 
+#if NETSTANDARD2_1 || NET6_0
+		[Obsolete("Use TryAdd from System.Collections")]
+#endif
 		public static bool TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
 		{
 			if (dictionary.ContainsKey(key))

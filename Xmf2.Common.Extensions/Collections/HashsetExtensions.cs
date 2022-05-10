@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Xmf2.Common.Collections
 {
+	//TODO BUGGY
 	public static class HashsetExtensions
 	{
 #if NETSTANDARD2_0

@@ -8,28 +8,38 @@ namespace Xmf2.Common.Collections
 		/// <summary>
 		/// Découpe un Array en sous listes.
 		/// </summary>
+#if NET6_0
+		[Obsolete("Use Chunk")]
+#endif
 		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this T[] source, int bunchMaxSize)
 		{
 			if (bunchMaxSize < 1)
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
+
 			return source.InternalByBunchOf(bunchMaxSize);
 		}
 
 		/// <summary>
 		/// Découpe un IReadOnlyList en sous listes.
 		/// </summary>
+
+#if NET6_0
+		[Obsolete("Use Chunk")]
+#endif
 		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IReadOnlyList<T> source, int bunchMaxSize)
 		{
 			if (source is T[] arrayOfT)
 			{
 				return arrayOfT.ByBunchOf(bunchMaxSize);
 			}
+
 			if (bunchMaxSize < 1)
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
+
 			return source.InternalByBunchOf(bunchMaxSize);
 		}
 
@@ -44,16 +54,21 @@ namespace Xmf2.Common.Collections
 		///			DontCallThisMethodWithTooMuchElements(littleList);//with 100 elements it's ok.
 		///		}
 		/// </example>
+#if NET6_0
+		[Obsolete("Use Chunk")]
+#endif
 		public static IEnumerable<IReadOnlyList<T>> ByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
 		{
 			if (source is IReadOnlyList<T> readonlyList)
 			{
 				return readonlyList.ByBunchOf(bunchMaxSize);
 			}
+
 			if (bunchMaxSize < 1)
 			{
 				throw new ArgumentOutOfRangeException(nameof(bunchMaxSize));
 			}
+
 			return source.InternalByBunchOf(bunchMaxSize);
 		}
 
@@ -102,6 +117,7 @@ namespace Xmf2.Common.Collections
 				bunch.Add(enumerator.Current);
 				didMove = true;
 			}
+
 			return (moveNext, didMove, bunch);
 		}
 	}

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Xmf2.Common.Collections
 {
+#if NET6_0
+	[Obsolete("Use Take with sequence")]
+#endif
 	public static class SliceExtensions
 	{
 		public static IReadOnlyList<T> Slice<T>(this T[] source, int offset) => source.Slice(offset, source.Length - offset);

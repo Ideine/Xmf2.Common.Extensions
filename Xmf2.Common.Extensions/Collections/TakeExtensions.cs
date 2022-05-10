@@ -5,6 +5,9 @@ namespace Xmf2.Common.Collections
 {
 	public static class TakeExtensions
 	{
+#if NET6_0
+		[Obsolete("Use MaxBy from Linq")]
+#endif
 		public static TInput TakeMax<TInput, TOutput>(this IEnumerable<TInput> source, Func<TInput, TOutput> map)
 			where TOutput : IComparable<TOutput>
 		{
