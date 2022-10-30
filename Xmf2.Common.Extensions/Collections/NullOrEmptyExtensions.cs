@@ -5,7 +5,7 @@ namespace Xmf2.Common.Collections
 {
 	public static class NullOrEmptyExtensions
 	{
-		public static bool NotNullOrEmpty<T>(this List<T> source)
+		public static bool NotNullOrEmpty<T>(this ICollection<T> source)
 		{
 			return source?.Count > 0;
 		}

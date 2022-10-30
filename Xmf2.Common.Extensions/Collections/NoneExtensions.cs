@@ -8,6 +8,7 @@ namespace Xmf2.Common.Collections
 	{
 		/// <summary>
 		/// Détermine si la séquence passée est vide.
+		/// <remarks>Prefer use of Count == 0 if source implements <see cref="ICollection{T}"/></remarks>
 		/// </summary>
 		/// <typeparam name="T">Type des éléments de source.</typeparam>
 		/// <param name="source">IEnumerable à vérifier pour savoir si des éléments y sont présents.</param>
