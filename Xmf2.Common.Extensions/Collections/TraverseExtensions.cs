@@ -8,9 +8,9 @@ namespace Xmf2.Common.Collections
 		public static IEnumerable<T> Traverse<T>(this T v, Func<T, IEnumerable<T>> bySelector)
 		{
 			yield return v;
-			foreach (var selected in bySelector(v))
+			foreach (T selected in bySelector(v))
 			{
-				foreach (var subSelected in selected.Traverse(bySelector))
+				foreach (T subSelected in selected.Traverse(bySelector))
 				{
 					yield return subSelected;
 				}

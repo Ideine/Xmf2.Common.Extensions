@@ -15,10 +15,10 @@ namespace Xmf2.Common.Collections
 		/// <summary>
 		/// Regroupe les items d'un IEnumerable ayant consécutivement la même valeur.
 		/// </summary>
-		/// <example>
+		/// <example> <code>
 		///		//Compare results of PartitionBy vs GroupBy
 		///
-		///		IEnumerable<char> values = "HELlO WORLD";
+		///		string values = "HELlO WORLD";
 		///		foreach (var group in values.PartitionBy(char.ToLower).Where(x => x.Key == 'l' || x.Key == 'o'))
 		///			Console.WriteLine($"{group.Key} {group.Count()}");
 		///		// Output :
@@ -32,7 +32,7 @@ namespace Xmf2.Common.Collections
 		///		// Output :
 		///		// l 3
 		///		// o 2
-		/// </example>
+		/// </code></example>
 		public static IEnumerable<IGrouping<TKey, TElement>> PartitionBy<TElement, TKey>(this IEnumerable<TElement> source, Func<TElement, TKey> selector)
 		{
 			using IEnumerator<TElement> enumerator = source.GetEnumerator();

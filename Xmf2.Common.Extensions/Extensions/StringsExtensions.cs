@@ -68,9 +68,9 @@ namespace Xmf2.Common.Extensions
 
 		public static string AsSha256(this string input)
 		{
-			using var algorithm = SHA256.Create();
+			using SHA256 algorithm = SHA256.Create();
 			byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
-			var formatted = new StringBuilder(2 * hash.Length);
+			StringBuilder formatted = new(2 * hash.Length);
 			foreach (byte b in hash)
 			{
 				formatted.AppendFormat("{0:X2}", b);

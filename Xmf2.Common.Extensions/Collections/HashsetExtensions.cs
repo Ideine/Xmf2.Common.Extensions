@@ -19,6 +19,9 @@ namespace Xmf2.Common.Collections
 #endif
 		}
 
+		/// <summary>
+		/// Add all elements one by one from an enumerable to a HashSet
+		/// </summary>
 		public static void AddRange<TSource>(this HashSet<TSource> source, IEnumerable<TSource> items)
 		{
 			foreach (TSource item in items)
