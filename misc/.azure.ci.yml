@@ -11,11 +11,13 @@ steps:
     clean: true
 
   - task: DotNetCoreCLI@2
+    displayName: "Build & test"
     inputs:
       command: 'test'
       projects: 'Xmf2.Common.Extensions.Tests/Xmf2.Common.Extensions.Tests.csproj'
 
   - task: DotNetCoreCLI@2
+    displayName: "Build & pack"
     inputs:
       command: 'pack'
       packagesToPack: 'Xmf2.Common.Extensions/Xmf2.Common.Extensions.csproj'
