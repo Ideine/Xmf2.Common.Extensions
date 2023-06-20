@@ -26,11 +26,11 @@ namespace Xmf2.Common.Collections
 #if NETSTANDARD2_0
 				if (itemSet.Contains(item))
 				{
-					itemSet.Add(item);
+					yield return item;
 				}
 				else
 				{
-					yield return item;
+					itemSet.Add(item);
 				}
 #else
 				if (!itemSet.Add(item))

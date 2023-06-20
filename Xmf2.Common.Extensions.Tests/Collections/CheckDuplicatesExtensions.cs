@@ -42,7 +42,7 @@ namespace Xmf2.Common.Tests.Collections
 			{
 				Value = value;
 			}
-			public int Value { get; init; }
+			public int Value { get; }
 		}
 
 		private class IntWrapperComparer : IEqualityComparer<IntWrapper>
