@@ -17,6 +17,8 @@
 		<PackageReleaseNotes>Fix license url</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryUrl>https://github.com/Ideine/Xmf2.Common.Extensions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/Ideine/Xmf2.Common.Extensions</PackageProjectUrl>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -27,7 +29,7 @@
 	  <None Remove=".editorconfig" />
 	  <None Remove=".gitignore" />
 	  <None Remove="README.md" />
-	  <None Include="..\LICENSE" Pack="true" PackagePath="" />
+	  <None Include="..\LICENSE" Visible="false" Pack="true" PackagePath="" />
 	  <None Remove="misc/.azure.ci.yml" />
 	</ItemGroup>
 
