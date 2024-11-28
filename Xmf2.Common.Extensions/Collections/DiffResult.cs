@@ -22,7 +22,7 @@ namespace Xmf2.Common.Collections
 		}
 	}
 
-	public interface IDiffResult<TFirst, TSecond> : IDisposable
+	public interface IDiffResult<out TFirst, out TSecond> : IDisposable
 	{
 		IEnumerable<TFirst> FirstSet { get; }
 		IEnumerable<TSecond> SecondSet { get; }
@@ -75,13 +75,12 @@ namespace Xmf2.Common.Collections
 	{
 		private Dictionary<TKey, TFirst> _firstDictionary;
 		private Dictionary<TKey, TSecond> _secondDictionary;
-		private readonly IEqualityComparer<TKey> _keyComparer;
 
 		public DiffResult(IEnumerable<TFirst> firstSet, IEnumerable<TSecond> secondSet, Func<TFirst, TKey> firstKeySelector, Func<TSecond, TKey> secondKeySelector, IEqualityComparer<TKey> keyComparer = null)
 		{
-			_keyComparer = keyComparer ?? EqualityComparer<TKey>.Default;
-			_firstDictionary = firstSet.ToDictionary(firstKeySelector, _keyComparer);
-			_secondDictionary = secondSet.ToDictionary(secondKeySelector, _keyComparer);
+			IEqualityComparer<TKey> notNullKeyComparer = keyComparer ?? EqualityComparer<TKey>.Default;
+			_firstDictionary = firstSet.ToDictionary(firstKeySelector, notNullKeyComparer);
+			_secondDictionary = secondSet.ToDictionary(secondKeySelector, notNullKeyComparer);
 		}
 
 		public IEnumerable<TFirst> OnlyInFirstSet => _firstDictionary.Where(kvp => !_secondDictionary.ContainsKey(kvp.Key)).Select(kvp => kvp.Value);

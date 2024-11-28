@@ -5,119 +5,41 @@ namespace Xmf2.Common.Comparers
 {
 	public static class ByPropEqualityComparer<T>
 	{
-		public static IEqualityComparer<T> Instanciate<TProp>(Func<T, TProp> selector)
+		public static IEqualityComparer<T> Instanciate<TProp>(Func<T, TProp> selector) => new ByPropEqualityComparer<T, TProp>(selector);
+
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB)
 		{
-			return new ByPropEqualityComparer<T, TProp>(selector);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC, Func<T, TPropD> selectorD)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC), Instanciate(selectorD));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC, Func<T, TPropD> selectorD, Func<T, TPropE> selectorE)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC), Instanciate(selectorD), Instanciate(selectorE));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC,
-			Func<T, TPropD> selectorD,
-			Func<T, TPropE> selectorE)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC, Func<T, TPropD> selectorD, Func<T, TPropE> selectorE, Func<T, TPropF> selectorF)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC),
-				Instanciate(selectorD),
-				Instanciate(selectorE)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC), Instanciate(selectorD), Instanciate(selectorE), Instanciate(selectorF));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC,
-			Func<T, TPropD> selectorD,
-			Func<T, TPropE> selectorE,
-			Func<T, TPropF> selectorF)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC, Func<T, TPropD> selectorD, Func<T, TPropE> selectorE, Func<T, TPropF> selectorF, Func<T, TPropG> selectorG)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC),
-				Instanciate(selectorD),
-				Instanciate(selectorE),
-				Instanciate(selectorF)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC), Instanciate(selectorD), Instanciate(selectorE), Instanciate(selectorF), Instanciate(selectorG));
 		}
 
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC,
-			Func<T, TPropD> selectorD,
-			Func<T, TPropE> selectorE,
-			Func<T, TPropF> selectorF,
-			Func<T, TPropG> selectorG)
+		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG, TPropH>(Func<T, TPropA> selectorA, Func<T, TPropB> selectorB, Func<T, TPropC> selectorC, Func<T, TPropD> selectorD, Func<T, TPropE> selectorE, Func<T, TPropF> selectorF, Func<T, TPropG> selectorG, Func<T, TPropH> selectorH)
 		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC),
-				Instanciate(selectorD),
-				Instanciate(selectorE),
-				Instanciate(selectorF),
-				Instanciate(selectorG)
-			);
-		}
-
-		public static IEqualityComparer<T> Instanciate<TPropA, TPropB, TPropC, TPropD, TPropE, TPropF, TPropG, TPropH>(
-			Func<T, TPropA> selectorA,
-			Func<T, TPropB> selectorB,
-			Func<T, TPropC> selectorC,
-			Func<T, TPropD> selectorD,
-			Func<T, TPropE> selectorE,
-			Func<T, TPropF> selectorF,
-			Func<T, TPropG> selectorG,
-			Func<T, TPropH> selectorH)
-		{
-			return new AndEqualityComparer<T>(
-				Instanciate(selectorA),
-				Instanciate(selectorB),
-				Instanciate(selectorC),
-				Instanciate(selectorD),
-				Instanciate(selectorE),
-				Instanciate(selectorF),
-				Instanciate(selectorG),
-				Instanciate(selectorH)
-			);
+			return new AndEqualityComparer<T>(Instanciate(selectorA), Instanciate(selectorB), Instanciate(selectorC), Instanciate(selectorD), Instanciate(selectorE), Instanciate(selectorF), Instanciate(selectorG), Instanciate(selectorH));
 		}
 
 		public static IEqualityComparer<T> Instanciate<TProp>(Func<T, TProp> selector, IEqualityComparer<TProp> equalityComparer)

@@ -9,7 +9,7 @@ namespace Xmf2.Common.Extensions
 			StringBuilder formatted = new(2 * input.Length);
 			foreach (byte b in input)
 			{
-				formatted.AppendFormat("{0:X2}", b);
+				formatted.Append($"{b:X2}");
 			}
 
 			return formatted.ToString();

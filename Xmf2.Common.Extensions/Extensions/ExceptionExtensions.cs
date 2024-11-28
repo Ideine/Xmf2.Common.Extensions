@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Xmf2.Common.Extensions
 {
 	public static class ExceptionExtensions
@@ -18,8 +19,10 @@ namespace Xmf2.Common.Extensions
 				{
 					return true;
 				}
+
 				ex = ex.InnerException;
 			}
+
 			return false;
 		}
 	}

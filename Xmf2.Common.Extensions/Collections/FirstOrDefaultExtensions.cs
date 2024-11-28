@@ -28,6 +28,7 @@ namespace Xmf2.Common.Collections
 				value = item;
 				return true;
 			}
+
 			value = default;
 			return false;
 		}
@@ -46,6 +47,7 @@ namespace Xmf2.Common.Collections
 					return true;
 				}
 			}
+
 			value = default;
 			return false;
 		}

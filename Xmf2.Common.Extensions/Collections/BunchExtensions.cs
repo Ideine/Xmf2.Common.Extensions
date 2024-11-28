@@ -76,9 +76,7 @@ namespace Xmf2.Common.Collections
 		{
 			for (int offset = 0 ; offset < source.Length ; offset += bunchMaxSize)
 			{
-				yield return offset + bunchMaxSize > source.Length
-					? source.Slice(offset)
-					: source.Slice(offset, bunchMaxSize);
+				yield return offset + bunchMaxSize > source.Length ? source.Slice(offset) : source.Slice(offset, bunchMaxSize);
 			}
 		}
 
@@ -86,20 +84,17 @@ namespace Xmf2.Common.Collections
 		{
 			for (int offset = 0 ; offset < source.Count ; offset += bunchMaxSize)
 			{
-				yield return offset + bunchMaxSize > source.Count
-					? source.Slice(offset)
-					: source.Slice(offset, bunchMaxSize);
+				yield return offset + bunchMaxSize > source.Count ? source.Slice(offset) : source.Slice(offset, bunchMaxSize);
 			}
 		}
 
 		private static IEnumerable<IReadOnlyList<T>> InternalByBunchOf<T>(this IEnumerable<T> source, int bunchMaxSize)
 		{
 			using IEnumerator<T> enumerator = source.GetEnumerator();
-			bool moveNext, didMove;
-			IReadOnlyList<T> bunch;
+			bool moveNext;
 			do
 			{
-				(moveNext, didMove, bunch) = TryGetABunch(enumerator, bunchMaxSize);
+				(moveNext, bool didMove, IReadOnlyList<T> bunch) = TryGetABunch(enumerator, bunchMaxSize);
 				if (didMove)
 				{
 					yield return bunch;

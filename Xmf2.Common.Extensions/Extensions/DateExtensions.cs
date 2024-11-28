@@ -19,10 +19,7 @@ namespace Xmf2.Common.Extensions
 			return endOfDay;
 		}
 
-		public static DateTime BeginningOfMonth(this DateTime date)
-		{
-			return new DateTime(date.Year, date.Month, 1);
-		}
+		public static DateTime BeginningOfMonth(this DateTime date) => new(date.Year, date.Month, 1);
 
 		public static DateTime BeginningOfWeek(this DateTime date, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
 		{
@@ -30,15 +27,9 @@ namespace Xmf2.Common.Extensions
 			return date.AddDays(-1 * diff).Date;
 		}
 
-		public static DateTime EndOfWeek(this DateTime date, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
-		{
-			return date.AddDays(7).BeginningOfWeek(startDayOfWeek).AddDays(-1).Date;
-		}
+		public static DateTime EndOfWeek(this DateTime date, DayOfWeek startDayOfWeek = DayOfWeek.Monday) => date.AddDays(7).BeginningOfWeek(startDayOfWeek).AddDays(-1).Date;
 
-		public static bool IsSameDay(this DateTime firstDate, DateTime secondDate)
-		{
-			return firstDate.IsSameMonth(secondDate) && firstDate.Day == secondDate.Day;
-		}
+		public static bool IsSameDay(this DateTime firstDate, DateTime secondDate) => firstDate.IsSameMonth(secondDate) && firstDate.Day == secondDate.Day;
 
 		public static bool IsSameWeek(this DateTime firstDate, DateTime secondDate, DayOfWeek startDayOfWeek = DayOfWeek.Monday)
 		{
@@ -50,15 +41,9 @@ namespace Xmf2.Common.Extensions
 			return firstDateWeek == secondDateWeek;
 		}
 
-		public static bool IsSameMonth(this DateTime firstDate, DateTime secondDate)
-		{
-			return firstDate.IsSameYear(secondDate) && firstDate.Month == secondDate.Month;
-		}
+		public static bool IsSameMonth(this DateTime firstDate, DateTime secondDate) => firstDate.IsSameYear(secondDate) && firstDate.Month == secondDate.Month;
 
-		public static bool IsSameYear(this DateTime firstDate, DateTime secondDate)
-		{
-			return firstDate.Year == secondDate.Year;
-		}
+		public static bool IsSameYear(this DateTime firstDate, DateTime secondDate) => firstDate.Year == secondDate.Year;
 
 		#region DateTimeOffset
 

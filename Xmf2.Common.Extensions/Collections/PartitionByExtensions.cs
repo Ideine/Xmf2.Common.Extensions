@@ -43,6 +43,7 @@ namespace Xmf2.Common.Collections
 				TKey partitionKey = selector(enumerator.Current);
 				yield return new PartitionGroup<TKey, TElement>(partitionKey, GetPartition(partitionKey).ToList());
 			}
+
 			IEnumerable<TElement> GetPartition(TKey key)
 			{
 				bool firstOfSeries = true;

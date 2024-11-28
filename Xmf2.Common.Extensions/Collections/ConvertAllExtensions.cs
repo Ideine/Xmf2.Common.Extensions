@@ -25,14 +25,14 @@ namespace Xmf2.Common.Collections
 
 		public static List<TOut> ConvertAll<TSource, TOut>(this IReadOnlyCollection<TSource> source, Func<TSource, int, TOut> converter)
 		{
-			var result = new List<TOut>(capacity: source.Count);
+			List<TOut> result = new(capacity: source.Count);
 			result.AddRange(source.Select(converter));
 			return result;
 		}
 
 		public static async Task<List<TDest>> ConvertAllAsync<TSource, TDest>(this IReadOnlyList<TSource> source, Func<TSource, Task<TDest>> map)
 		{
-			var result = new List<TDest>(source.Count);
+			List<TDest> result = new(source.Count);
 			foreach (TSource item in source)
 			{
 				result.Add(await map(item));
@@ -43,7 +43,7 @@ namespace Xmf2.Common.Collections
 
 		public static async Task<List<TDest>> ConvertAllAsync<TSource, TDest>(this IReadOnlyList<TSource> source, Func<TSource, int, Task<TDest>> map)
 		{
-			var result = new List<TDest>(source.Count);
+			List<TDest> result = new(source.Count);
 			for (int i = 0 ; i < source.Count ; i++)
 			{
 				result.Add(await map(source[i], i));
@@ -66,7 +66,7 @@ namespace Xmf2.Common.Collections
 
 		public static async Task<List<TDest>> ConvertAllAsync<TSource, TDest>(this IEnumerable<TSource> source, Func<TSource, Task<TDest>> map)
 		{
-			var result = new List<TDest>();
+			List<TDest> result = new();
 			foreach (TSource item in source)
 			{
 				result.Add(await map(item));

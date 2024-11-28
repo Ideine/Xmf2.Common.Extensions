@@ -26,6 +26,7 @@ namespace Xmf2.Common.Collections
 						currentMin = next;
 					}
 				}
+
 				return true;
 			}
 		}
@@ -51,6 +52,7 @@ namespace Xmf2.Common.Collections
 						currentMax = next;
 					}
 				}
+
 				return true;
 			}
 		}

@@ -18,13 +18,14 @@ namespace Xmf2.Common.Extensions
 			int ByCombinedComparisons(T x, T y)
 			{
 				int result = 0;
-				for (int i = 0 ; i < comparisons.Count; i++)
+				for (int i = 0 ; i < comparisons.Count ; i++)
 				{
 					if ((result = comparisons[i](x, y)) != 0)
 					{
 						return result;
 					}
 				}
+
 				return result;
 			}
 		}

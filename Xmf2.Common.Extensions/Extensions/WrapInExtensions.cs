@@ -7,21 +7,9 @@ namespace Xmf2.Common.Extensions
 {
 	public static class WrapInExtensions
 	{
-		public static T[] WrapInArray<T>(this T input)
-		{
-			return new[]
-			{
-				input
-			};
-		}
+		public static T[] WrapInArray<T>(this T input) => [input];
 
-		public static List<T> WrapInList<T>(this T input)
-		{
-			return new List<T>
-			{
-				input
-			};
-		}
+		public static List<T> WrapInList<T>(this T input) => [input];
 
 		public static MemoryStream WrapInMemoryStream(this byte[] source)
 		{

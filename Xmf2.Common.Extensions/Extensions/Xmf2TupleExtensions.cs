@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Xmf2.Common.Extensions
 {
 	/// <remarks>

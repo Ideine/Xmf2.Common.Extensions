@@ -18,14 +18,9 @@ namespace Xmf2.Common.Extensions
 			return new LockDisposable(mutex);
 		}
 
-		private class LockDisposable : IDisposable
+		private class LockDisposable(SemaphoreSlim semaphore) : IDisposable
 		{
-			private SemaphoreSlim _semaphore;
-
-			public LockDisposable(SemaphoreSlim semaphore)
-			{
-				_semaphore = semaphore;
-			}
+			private SemaphoreSlim _semaphore = semaphore;
 
 			public void Dispose()
 			{

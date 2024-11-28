@@ -16,6 +16,7 @@ namespace Xmf2.Common.Collections
 				}
 			}
 		}
+
 		public static IEnumerable<T> Traverse<T>(this T v, Func<T, T> bySelector)
 		{
 			T nextNode = v;

@@ -13,10 +13,11 @@ namespace Xmf2.Common.Collections
 		public static Dictionary<TKey, TSource> ToDictionary<TKey, TSource>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer, int capacity)
 		{
 			var dictionary = new Dictionary<TKey, TSource>(capacity, comparer);
-			foreach (var item in source)
+			foreach (TSource item in source)
 			{
 				dictionary.Add(keySelector(item), item);
 			}
+
 			return dictionary;
 		}
 
@@ -28,10 +29,11 @@ namespace Xmf2.Common.Collections
 		public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer, int capacity)
 		{
 			var dictionary = new Dictionary<TKey, TElement>(capacity, comparer);
-			foreach (var item in source)
+			foreach (TSource item in source)
 			{
 				dictionary.Add(keySelector(item), elementSelector(item));
 			}
+
 			return dictionary;
 		}
 	}

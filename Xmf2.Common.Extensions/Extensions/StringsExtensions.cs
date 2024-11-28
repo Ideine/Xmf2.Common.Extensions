@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -45,38 +46,26 @@ namespace Xmf2.Common.Extensions
 		/// <summary>
 		/// <see cref="string.IsNullOrWhiteSpace"/>
 		/// </summary>
-		public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
+		public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string s) => string.IsNullOrWhiteSpace(s);
 
 		/// <summary>
 		/// Negate the result or <see cref="string.IsNullOrWhiteSpace"/>
 		/// </summary>
-		public static bool NotNullOrWhiteSpace(this string s) => !string.IsNullOrWhiteSpace(s);
+		public static bool NotNullOrWhiteSpace([NotNullWhen(true)] this string s) => !string.IsNullOrWhiteSpace(s);
 
-		public static bool AssertMandatory(this string s) => s == null || s != string.Empty;
+		public static bool AssertMandatory(this string s) => s is not "";
 
 		public static string NullIfEmpty(this string source) => string.IsNullOrEmpty(source) ? null : source;
 
-		public static string[] Split(this string input, char separator, StringSplitOptions options) => input.Split(new[]
-		{
-			separator
-		}, options);
+		public static string[] Split(this string input, char separator, StringSplitOptions options) => input.Split([separator], options);
 
-		public static string[] Split(this string input, string separator, StringSplitOptions options) => input.Split(new[]
-		{
-			separator
-		}, options);
+		public static string[] Split(this string input, string separator, StringSplitOptions options) => input.Split([separator], options);
 
 		public static string AsSha256(this string input)
 		{
 			using SHA256 algorithm = SHA256.Create();
 			byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
-			StringBuilder formatted = new(2 * hash.Length);
-			foreach (byte b in hash)
-			{
-				formatted.AppendFormat("{0:X2}", b);
-			}
-
-			return formatted.ToString();
+			return hash.ToHexString();
 		}
 	}
 }

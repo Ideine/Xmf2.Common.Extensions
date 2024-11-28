@@ -28,8 +28,8 @@ namespace Xmf2.Common.Collections
 			Func<T, TCompareA> sortByA,
 			Func<T, TCompareB> thenByB)
 		{
-			var comparerA = Comparer<TCompareA>.Default;
-			var comparerB = Comparer<TCompareB>.Default;
+			Comparer<TCompareA> comparerA = Comparer<TCompareA>.Default;
+			Comparer<TCompareB> comparerB = Comparer<TCompareB>.Default;
 			list.Sort(
 				(x, y) => comparerA.Compare(sortByA(x), sortByA(y)),
 				(x, y) => comparerB.Compare(thenByB(x), thenByB(y))
@@ -42,9 +42,9 @@ namespace Xmf2.Common.Collections
 			Func<T, TCompareB> thenByB,
 			Func<T, TCompareC> thenByC)
 		{
-			var comparerA = Comparer<TCompareA>.Default;
-			var comparerB = Comparer<TCompareB>.Default;
-			var comparerC = Comparer<TCompareC>.Default;
+			Comparer<TCompareA> comparerA = Comparer<TCompareA>.Default;
+			Comparer<TCompareB> comparerB = Comparer<TCompareB>.Default;
+			Comparer<TCompareC> comparerC = Comparer<TCompareC>.Default;
 			list.Sort(
 				(x, y) => comparerA.Compare(sortByA(x), sortByA(y)),
 				(x, y) => comparerB.Compare(thenByB(x), thenByB(y)),
@@ -59,10 +59,10 @@ namespace Xmf2.Common.Collections
 			Func<T, TCompareC> thenByC,
 			Func<T, TCompareD> thenByD)
 		{
-			var comparerA = Comparer<TCompareA>.Default;
-			var comparerB = Comparer<TCompareB>.Default;
-			var comparerC = Comparer<TCompareC>.Default;
-			var comparerD = Comparer<TCompareD>.Default;
+			Comparer<TCompareA> comparerA = Comparer<TCompareA>.Default;
+			Comparer<TCompareB> comparerB = Comparer<TCompareB>.Default;
+			Comparer<TCompareC> comparerC = Comparer<TCompareC>.Default;
+			Comparer<TCompareD> comparerD = Comparer<TCompareD>.Default;
 			list.Sort(
 				(x, y) => comparerA.Compare(sortByA(x), sortByA(y)),
 				(x, y) => comparerB.Compare(thenByB(x), thenByB(y)),
